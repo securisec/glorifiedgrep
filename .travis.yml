@@ -1,0 +1,22 @@
+language: python
+python: 3.7
+dist: xenial
+sudo: true
+script:
+- pip install -r requirements.txt
+- pip install -U pytest decorator
+# - pytest --disable-pytest-warnings
+cache: pip
+notifications:
+  slack:
+    secure: dn0Ed8lqseG7TFDPZs5n8CXG/TFyrrvX9lo7GMzdUAQWxa5PZ1mX4K/MjGO0RdRnp3twCroesMEB0zmboXbgQoZTpmusRbl/BQ1k3lFaUzy3iyJIeyDK4q4iC1NGLO4gZpzwG3nluJLPq88uEZj3rh4Av2PHjroGDiNPC6TBYvWYX+iS3bg2NhY2brEMaDyCcxC5xtptJNgKImuX2w4uYyN72gyZ+FqaNH0uWsrIVFHCanewHcb5VN72GZMQ9MyUtyr+0ckOflFY5t/MBV6LrsztwbDzZFWmkR6CEOpHT2G1xo6hD0ptDq7bjAznEj6tLqhGkEjSjYKFbdtWS+H4yUW+Tw3JVN6HRnwDB9kQYzhczVPOVvlKPnU19VTHHJJ0BdFFkRr94jGBfuU8gQOys3Rg4KUtqZZs9XoXrb2/tAEUHFUCuUi9pdvbeZ1+/jBC0Au3O9UzNUmZE3pNmdZDPHa7keYV1XMpITtNmgZfQxBNje9SnBlTRa57+c5UivyOOBTh1ceRfC5CaNwKQGyAMrgBaqjCWf7vonYqpxJCFSsYV4YL/zUgLKXFoRXXWTKed/CaWNdaA5dK7DeX3Mf9HjACdBPF7XSlEwnBE4xoxygGLy7uWRA88ISc7zUPLw+KQrj1VlEm5Im3KEXrJ3BL5VI1gLEqz4LJFDt4SGypSGg=
+deploy:
+  provider: pypi
+  user: securisec
+  password:
+    secure: N2U4g/+AkUN1RPJmcHYocSqFZiF/Td2E21tFuk6y+tG2E2Rzyk42pgyrUsczB06lC4x3sDwbsXM6hxxa78vidYBKLdV/1B2ONf3XonHzwsyqOTyrFZKILsNumVmk4pMj7qXOJvUMC88l1WFg7MJaw6XuDjTPD6iLcs0HlCuWXzLFSxj6h0Q6hAtaoRDWE4qF+uyYOoS1DqJauQk7X8IdPZDVQRO59SwLKh/QkLQe8pux/2hETMLyn9BgGnjPIQpHKESH539pwOxYhI8tN3vl47JeI+DTo+AUMfQs+3S7K0n39BRhLKI3L09zu8Hh26X+VlJFrFHsolbk04439xy0sRteapLCJ4tCZ58GCyU2sL1nDB2qp4nMlEz5Bou5SM+x10Qc9bL4+MnCvE0v6f79qSYPDoAflRwPzwX703Dy9tZgiyHOFNks/u/aLhEHhp/KGyAv09khVkWqaeQQVIWrYnda2YXJ0xhd7gpqHgETnl3ilMbYpBXdkJwd8yS96ijBM5hPixxhdtSoi3C7aVcWoCGiS864y2gdrOkIdXYVzRz74hG097eSCph/84vBO0mjnuG094boUt/I9M4foRo+aPJN9MbSmNzqdQgGM6E7IpmOGjj4UgQiM2H6/mA1vtmwNoVOR/Qdij/iYzDRm50tssqBElx/jlxzbDJv/DTyXQw=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+  skip_exisiting: true
+  skip_cleanup: true
