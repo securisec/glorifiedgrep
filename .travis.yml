@@ -5,11 +5,19 @@ sudo: true
 script:
 - pip install -r requirements.txt
 - pip install -U pytest decorator
-# - pytest --disable-pytest-warnings
+- wget https://github.com/BurntSushi/ripgrep/releases/download/11.0.1/ripgrep_11.0.1_amd64.deb -O /tmp/ripgrep
+- sudo dpkg -i /tmp/ripgrep
+- java -version
+- wget https://github.com/skylot/jadx/releases/download/v1.0.0/jadx-1.0.0.zip -O /tmp/jadx.zip
+- unzip /tmp/jadx.zip -d /tmp/jadx
+- sudo ln -s /tmp/jadx/bin/jadx /usr/local/bin/jadx
+- jadx --version
+
+- jadx -d /tmp/un tests/test.apk
 cache: pip
 notifications:
   slack:
-    secure: dn0Ed8lqseG7TFDPZs5n8CXG/TFyrrvX9lo7GMzdUAQWxa5PZ1mX4K/MjGO0RdRnp3twCroesMEB0zmboXbgQoZTpmusRbl/BQ1k3lFaUzy3iyJIeyDK4q4iC1NGLO4gZpzwG3nluJLPq88uEZj3rh4Av2PHjroGDiNPC6TBYvWYX+iS3bg2NhY2brEMaDyCcxC5xtptJNgKImuX2w4uYyN72gyZ+FqaNH0uWsrIVFHCanewHcb5VN72GZMQ9MyUtyr+0ckOflFY5t/MBV6LrsztwbDzZFWmkR6CEOpHT2G1xo6hD0ptDq7bjAznEj6tLqhGkEjSjYKFbdtWS+H4yUW+Tw3JVN6HRnwDB9kQYzhczVPOVvlKPnU19VTHHJJ0BdFFkRr94jGBfuU8gQOys3Rg4KUtqZZs9XoXrb2/tAEUHFUCuUi9pdvbeZ1+/jBC0Au3O9UzNUmZE3pNmdZDPHa7keYV1XMpITtNmgZfQxBNje9SnBlTRa57+c5UivyOOBTh1ceRfC5CaNwKQGyAMrgBaqjCWf7vonYqpxJCFSsYV4YL/zUgLKXFoRXXWTKed/CaWNdaA5dK7DeX3Mf9HjACdBPF7XSlEwnBE4xoxygGLy7uWRA88ISc7zUPLw+KQrj1VlEm5Im3KEXrJ3BL5VI1gLEqz4LJFDt4SGypSGg=
+    secure: vM6MO1lZ8iVkbpgLGlvjPXBrq4XALgS/3nqOqXbUO8qSHxCbIeWSphalxvEpM1O2xkXLIayVMkaYECl5n9BLtYrcq4hV/FrKlBud03Mw9aAJcW1fTIuYQaFLYCdbhcfor1C/d3dZJ/eIGI9jL5wXSDNGn5XxWKnk27TbYZLDF/gq1t8zEe81aQ7BgioS1NV8+dpAWVPzySCaLwNENyIe0hxvGIj98wDKb6lot2XzpGwgcP1braIWQ2NTZxKY8rVpjShrLTikYrRLN/W/NbDpTx5f2MzvJqzjeU913HffpQsDVSQ06gbzClmq4yPVAB0yBjs2WjiYRGnhdh83ROESM3wy2SxGX51vKEP0hffK3A8W3rLtxxtlhOFPmw6ns6rWc//C42m5hZBlFnedmkNa8MB/MrGWXYFTJ61Tvq8xKxdq03nYfyhjlmoOSao3litIE5XkJky/51202oyS3NnbaL+BXgtPTU39zJf9s3LROK7XgkVTF8Wy03T3IugkU5xsseCfDQg+rTGj0SPcWMZTSigD9PEfJ6H1pKWM2K2L1JxrpKrsqzAnwpZR5IBDUyI46CJGyU+9QaNjbl72K5PBSxTrTGe2OVA6zYb24tYTyjj4FtGSGxmcNZBSjFeqrlu1XnC0wyvvYTnuBIze8aAB8XtT7IOZ9HfWy3Hvrgxz/sY=
 deploy:
   provider: pypi
   user: securisec
