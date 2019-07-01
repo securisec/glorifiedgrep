@@ -4,6 +4,7 @@ from OpenSSL.crypto import X509, _ffi, _lib
 
 from .androidcore import _AndroidCore
 from ...logger import _logger
+from ...core import GreppedOut
 
 
 class _CertAnalysis(_AndroidCore):
@@ -68,13 +69,17 @@ class _CertAnalysis(_AndroidCore):
         return self._android_findings['cert_analysis']
 
     @_logger
-    def cert_public_key(self):
+    def cert_public_key(self) -> GreppedOut:
         """
         Get the public key from CERT.RSA
+        
+        Returns
+        -------
+        GreppedOut
+            GreppedOut object
 
-        :return: Public key
-        :rtype: list
-
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.cert_public_key()
@@ -87,16 +92,20 @@ class _CertAnalysis(_AndroidCore):
         key = crypto._bio_to_string(bio)
         self._cert_analysis['public_key'] = [key]
         self.log_debug('')
-        return [key]
+        return GreppedOut([key])
 
     @_logger
-    def cert_certificate(self):
+    def cert_certificate(self) -> GreppedOut:
         """
         Returns a PEM encoded certificate
+        
+        Returns
+        -------
+        GreppedOut
+            GreppedOut object
 
-        :return: certificate
-        :rtype: list
-
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.cert_certificate()
@@ -106,16 +115,20 @@ class _CertAnalysis(_AndroidCore):
         certificate = crypto.dump_certificate(crypto.FILETYPE_PEM, certs[0])
         self._cert_analysis['certificate'] = [certificate]
         self.log_debug('')
-        return [certificate]
+        return GreppedOut([certificate])
 
     @_logger
-    def cert_digest(self):
+    def cert_digest(self) -> dict:
         """
         Returns the digest hash in md5. sha1 and sha256
+        
+        Returns
+        -------
+        dict
+            Dictionary of hashes
 
-        :return: digest
-        :rtype: list
-
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.cert_digest()
@@ -124,16 +137,20 @@ class _CertAnalysis(_AndroidCore):
                   for k in ['md5', 'sha1', 'sha256']}
         self._cert_analysis['digest'] = [digest]
         self.log_debug('')
-        return [digest]
+        return digest
 
     @_logger
-    def cert_issuer(self):
+    def cert_issuer(self) -> GreppedOut:
         """
         The entity that verified the information and signed the certificate
+        
+        Returns
+        -------
+        GreppedOut
+            GreppedOut object
 
-        :return: certificate issuer
-        :rtype: list
-
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.cert_issuer()
@@ -142,16 +159,20 @@ class _CertAnalysis(_AndroidCore):
         issuer = [{k[0].decode():k[1].decode()} for k in com]
         self._cert_analysis['issuer'] = issuer
         self.log_debug('')
-        return issuer
+        return GreppedOut(issuer)
 
     @_logger
-    def cert_valid_dates(self):
+    def cert_valid_dates(self) -> dict:
         """
         The that the certificate is valid before, after and if expired
+        
+        Returns
+        -------
+        dict
+            Dict of dates and if exipred
 
-        :return: validity
-        :rtype: list
-
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.cert_valid_dates()
@@ -164,34 +185,49 @@ class _CertAnalysis(_AndroidCore):
         }
         self._cert_analysis['valid'] = [dates]
         self.log_debug('')
-        return [dates]
+        return dates
 
     @_logger
-    def cert_serial_number(self):
+    def cert_serial_number(self) -> int:
         """
-        Used to uniquely identify the certificate within a CA's systems. 
-        In particular this is used to track revocation information
 
         :return: serial number
         :rtype: list
 
+        """
+        """
+        Used to uniquely identify the certificate within a CA's systems. 
+        In particular this is used to track revocation information
+        
+        Returns
+        -------
+        int
+            Certificate serial number
+
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.cert_serial_number()
+
         """
         a = self._cert_object().get_serial_number()
         self._cert_analysis['serial_number'] = [a]
         self.log_debug('')
-        return [a]
+        return a
 
     @_logger
-    def cert_signature_algorithm(self):
+    def cert_signature_algorithm(self) -> str:
         """
         The algorithm used to sign the public key certificate
+        
+        Returns
+        -------
+        str
+            Algorithm used to create the certificate
 
-        :return: signature algorithm
-        :rtype: list
-
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.cert_signature_algorithm()
@@ -199,16 +235,20 @@ class _CertAnalysis(_AndroidCore):
         a = self._cert_object().get_signature_algorithm()
         self._cert_analysis['signature_algorithm'] = [a]
         self.log_debug('')
-        return [a]
+        return a
 
     @_logger
-    def cert_version(self):
+    def cert_version(self) -> int:
         """
         The certificate version number
+        
+        Returns
+        -------
+        int
+            Version number of the certificate
 
-        :return: version number
-        :rtype: list
-
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.cert_version()
@@ -216,16 +256,20 @@ class _CertAnalysis(_AndroidCore):
         a = self._cert_object().get_version()
         self._cert_analysis['version'] = [a]
         self.log_debug('')
-        return [a]
+        return a
 
     @_logger
-    def cert_bits(self):
+    def cert_bits(self) -> int:
         """
         Certificate bit
+        
+        Returns
+        -------
+        int
+            Certificate bits
 
-        :return: bits
-        :rtype: list
-
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.cert_bits()
@@ -233,16 +277,20 @@ class _CertAnalysis(_AndroidCore):
         a = self._cert_object().get_pubkey().bits()
         self._cert_analysis['bits'] = [a]
         self.log_debug('')
-        return [a]
+        return a
 
     @_logger
-    def cert_subject(self):
+    def cert_subject(self) -> list:
         """
         The entity a certificate belongs to: a machine, an individual, or an organization.
+        
+        Returns
+        -------
+        dict
+            Dict of certificate subjects CN, O, C, ST, L, OU, Cn
 
-        :return: CN, O, C, ST, L, OU, Cn
-        :rtype: dict
-
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.cert_subject()

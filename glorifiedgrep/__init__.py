@@ -1,4 +1,4 @@
-from re import compile
+import re
 
 from .logger import Logger
 from .android.modules.certanalysis import _CertAnalysis
@@ -52,7 +52,7 @@ class GlorifiedAndroid(_ManifestAnalysis, _CodeAnalysis, _FileAnalysys,
         """
         methods = [func for func in dir(self) if callable(
             getattr(self, func)) and not func.startswith("_")]
-        r = compile(regex)
+        r = re.compile(regex, re.I)
         return list(filter(
             lambda x: r.findall(x), methods
         ))

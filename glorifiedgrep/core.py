@@ -1,4 +1,4 @@
-
+import logging
 
 class GlorifiedGrepCore(object):
     pass
@@ -21,15 +21,21 @@ class GreppedOut:
         """
         return len(self.out)
 
-    def in_file(self, path: str) -> 'GreppedOut':
+    def in_file(self, path: str, key: str=None) -> 'GreppedOut':
         if isinstance(self.out, list):
             self.out = [x for x in self.out if path in x['file']]
             return self
+        else:
+            logging.warning('Method output is not an array')
+            return False
 
     def exclude_file(self, path: str) -> 'GreppedOut':
         if isinstance(self.out, list):
             self.out = [x for x in self.out if path not in x['file']]
             return self
+        else:
+            logging.warning('Method output is not an array')
+            return False
 
     def __repr__(self):
         return repr(self.out)
