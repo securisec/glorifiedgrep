@@ -9,3 +9,6 @@ g = GlorifiedAndroid(test_apk.resolve())
 
 def test_code_command_exec():
     assert g.code_command_exec().count == 0
+
+def test_code_create_tempfile():
+    assert g.code_create_tempfile().count == 0

@@ -7,8 +7,17 @@ Welcome to glorifiedgrep's documentation!
 =========================================
 
 .. toctree::
+   :caption: Android Module
    :maxdepth: 2
-   :caption: Contents:
+   
+   android/glorifiedandroid
+   android/certanalysis
+   android/codeanalysis
+   android/parsemanifest
+   android/owaspanalysis
+   android/otheranalysis
+   android/malware
+   android/utils
 
 
 

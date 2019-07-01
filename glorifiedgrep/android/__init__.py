@@ -27,8 +27,15 @@ class ParseManifest(_ManifestAnalysis):
 
 class CertInfo(_CertAnalysis):
     """
-    This class can be used to just parse a CERT.RSA file and 
-    parse it. This class does not decompile an APK file
+    This class is used for analyzing the certificate that an application 
+    is signed with. All the methods from this class is available in 
+    ``GlorifiedAndroid`` class, but can also be used by itself by passing 
+    the path to the certificate.
+
+    Examples
+    --------
+    >>> from glorifiedgrep.android import CertInfo
+    >>> cert = CertInfo('/path/to/cert)
     """
 
     def __init__(self, cert_path):

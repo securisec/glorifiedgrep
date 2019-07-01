@@ -75,7 +75,7 @@ class _CertAnalysis(_AndroidCore):
         
         Returns
         -------
-        GreppedOut
+        object
             GreppedOut object
 
         Examples
@@ -101,7 +101,7 @@ class _CertAnalysis(_AndroidCore):
         
         Returns
         -------
-        GreppedOut
+        object
             GreppedOut object
 
         Examples
@@ -146,7 +146,7 @@ class _CertAnalysis(_AndroidCore):
         
         Returns
         -------
-        GreppedOut
+        object
             GreppedOut object
 
         Examples

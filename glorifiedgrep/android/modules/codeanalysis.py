@@ -45,15 +45,23 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_create_tempfile(self, show_code: bool = False) -> list:
+    def code_create_tempfile(self, show_code: bool = False) -> GreppedOut:
         """
         Find all code which is using Java createTempFile 
         | `Reference <https://developer.android.com/reference/java/io/File>`__
+        
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut
+            GreppedOut object
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: list
-
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.code_create_tempfile()
@@ -62,7 +70,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         match = self._run_rg_and_process(regex=regex, code=show_code)
         self._code_analysis['temp_file'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def code_file_observer(self, show_code: bool = False) -> list:
