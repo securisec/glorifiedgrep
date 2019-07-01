@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 from os import path
 
-__version__ = '0.9.0'
-__author__ = 'Hapsida @securisec'
+with open('glorifiedgrep/__version__.py', 'r') as f:
+    exec(f.read())
 
 
 def read_requirements():
@@ -21,9 +21,7 @@ setup(
     version=__version__,
     author=__author__,
     packages=find_packages(exclude=('tests')),
-    install_requires=[
-        
-    ],
+    install_requires=read_requirements(),
     classifiers=[
         "Programming Language :: Python :: 3.7"
     ]

@@ -7,13 +7,15 @@ script:
 - pip install -U pytest decorator
 - wget https://github.com/BurntSushi/ripgrep/releases/download/11.0.1/ripgrep_11.0.1_amd64.deb -O /tmp/ripgrep
 - sudo dpkg -i /tmp/ripgrep
-- java -version
 - wget https://github.com/skylot/jadx/releases/download/v1.0.0/jadx-1.0.0.zip -O /tmp/jadx.zip
 - unzip /tmp/jadx.zip -d /tmp/jadx
 - sudo ln -s /tmp/jadx/bin/jadx /usr/local/bin/jadx
-- jadx --version
+- echo $'\e[1;31m'; java -version
+- echo $'\e[1;31m'; rg --version
+- echo $'\e[1;31m'; jadx --version
 
-- jadx -d /tmp/un tests/test.apk
+- pytest --disable-pytest-warning
+
 cache: pip
 notifications:
   slack:
