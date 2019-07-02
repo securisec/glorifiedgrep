@@ -75,7 +75,7 @@ class _CertAnalysis(_AndroidCore):
         
         Returns
         -------
-        object
+        GreppedOut : object
             GreppedOut object
 
         Examples
@@ -101,7 +101,7 @@ class _CertAnalysis(_AndroidCore):
         
         Returns
         -------
-        object
+        GreppedOut : object
             GreppedOut object
 
         Examples
@@ -146,7 +146,7 @@ class _CertAnalysis(_AndroidCore):
         
         Returns
         -------
-        object
+        GreppedOut : object
             GreppedOut object
 
         Examples
@@ -189,12 +189,6 @@ class _CertAnalysis(_AndroidCore):
 
     @_logger
     def cert_serial_number(self) -> int:
-        """
-
-        :return: serial number
-        :rtype: list
-
-        """
         """
         Used to uniquely identify the certificate within a CA's systems. 
         In particular this is used to track revocation information
