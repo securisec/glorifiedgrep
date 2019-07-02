@@ -1,3 +1,5 @@
+from __future__ import annotations
+from typing import Iterable
 import base64
 import json
 import textwrap
@@ -40,6 +42,16 @@ class JKS:
     """
 
     def __init__(self, jks_file: str, jks_password: str):
+        """
+        The init function of the JKS class
+        
+        Parameters
+        ----------
+        jks_file : str
+            The path to the .jks file
+        jks_password : str
+            The password for the jks file
+        """
         self._core = _AndroidCore(None)
         self.jks_file = jks_file
         self.jks_password = jks_password
@@ -51,9 +63,13 @@ class JKS:
         """
         Get the keystore alias from jks file
 
-        :return: jks keystore alias
-        :rtype: list
+        Returns
+        -------
+        list
+            jks keystore aliases
 
+        Examples
+        --------
         >>> j.jks_key_alias()
         """
         match = []
@@ -67,9 +83,13 @@ class JKS:
         """
         Get the private key from jks files
 
-        :return: jks private keys
-        :rtype: list
+        Returns
+        -------
+        list
+            jks private keys if password is correct
 
+        Examples
+        --------
         >>> j.jks_private_key()
         """
         match = []
@@ -89,9 +109,13 @@ class JKS:
         """
         Get the certificate from the jks file
 
-        :return: jks keystore certificates
-        :rtype: list
+        Returns
+        -------
+        list
+            jks certificates
 
+        Examples
+        --------
         >>> j.jks_certificate()
         """
         match = []
@@ -104,10 +128,10 @@ class JKS:
 
 class BKS:
     """
-    Process and get various information from jks files
+    Process and get various information from bks files
 
-    :param bks_file str: File path to jks file
-    :param bks_password str: password to the jks file
+    :param bks_file str: File path to bks file
+    :param bks_password str: password to the bks file
 
     >>> from glorifiedgrep.android.modules.utils import BKS
     >>> b = BKS('/path/to/file', 'secretpassword')
@@ -125,9 +149,13 @@ class BKS:
         """
         Prints the certificate from the bks file
 
-        :return: bks keystore certificate
-        :rtype: list
+        Returns
+        -------
+        list
+            bks certificates
 
+        Examples
+        --------
         >>> b.bks_certificate()
         """
         match = []
@@ -141,9 +169,13 @@ class BKS:
         """
         Prints the keystore type of the bks file
 
-        :return: bks keystore type
-        :rtype: list
+        Returns
+        -------
+        list
+            bks keystore type
 
+        Examples
+        --------
         >>> b.bks_keystore_type()
         """
         match = []
@@ -157,9 +189,13 @@ class BKS:
         """
         Prints the keystore alias of the bks file
 
-        :return: bks keystore alias
-        :rtype: list
+        Returns
+        -------
+        list
+            bks keystore aliases
 
+        Examples
+        --------
         >>> b.bks_keystore_alias()
         """
         match = []
@@ -189,14 +225,18 @@ class NativeELFAnalysis():
         self._core.log_debug(self.__class__)
 
     @_logger
-    def elf_header_info(self) -> object:
+    def elf_header_info(self) -> lief._pylief.ELF.Header:
         """
         Returns a lief header object with information obtained 
         from the binaries header
+        
+        Returns
+        -------
+        _pylief.ELF.Header : object
+            Header object object
 
-        :return: List of imported symbols
-        :rtype: object
-
+        Examples
+        --------
         >>> n.elf_header_info()
         """
 
@@ -208,9 +248,13 @@ class NativeELFAnalysis():
         """
         Returns a list of imported symbols from the binary
 
-        :return: List of imported symbols
-        :rtype: list
+        Returns
+        -------
+        list
+            list of imports from the binary
 
+        Examples
+        --------
         >>> n.elf_imported_symbols()
         """
 
@@ -222,9 +266,13 @@ class NativeELFAnalysis():
         """
         Returns a list of exported symbols from the binary
 
-        :return: List of exported symbols
-        :rtype: list
+        Returns
+        -------
+        list
+            Array of exports from the binary
 
+        Examples
+        --------
         >>> n.elf_exported_symbols()
         """
         self._core.log_debug('')
@@ -235,9 +283,13 @@ class NativeELFAnalysis():
         """
         Returns a list of strings from the binary
 
-        :return: List of strings
-        :rtype: list
+        Returns
+        -------
+        list
+            Array of strings from the binary
 
+        Examples
+        --------
         >>> n.elf_strings_from_binary()
         """
 
@@ -247,11 +299,15 @@ class NativeELFAnalysis():
     @_logger
     def elf_libraries_binary(self) -> list:
         """
-        Returns a list of strings from the binary
+        Returns a list of libraries the binary is linked with
 
-        :return: List of strings
-        :rtype: list
+        Returns
+        -------
+        list
+            Liked libraries
 
+        Examples
+        --------
         >>> n.elf_libraries_binary()
         """
 
@@ -273,34 +329,51 @@ class NativeDEXAnalysis():
     """
 
     def __init__(self, dex_path: str):
+        """
+        This class analyzes native dex files that are not decompiled
+        
+        Parameters
+        ----------
+        dex_path : str
+            Path to dex file
+        """
         self._core = _AndroidCore(None)
         self.dex_path = dex_path
         self._binary = lief.DEX.parse(self.dex_path)
         self._core.log_debug(self.__class__)
 
     @_logger
-    def dex_parse_dex(self) -> lief._pylief.DEX.File:
+    def dex_parse(self) -> lief._pylief.DEX.File:
         """
         Parse the dex file and returns a lief dex file object
 
-        :return: lief dex file object
-        :rtype: lief._pylief.DEX.File
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
-        >>> n.dex_parse_dex()
+        Examples
+        --------
+        >>> n.dex_parse()
         """
 
         self._core.log_debug('')
         return self._binary
 
     @_logger
-    def dex_classes(self) -> dict:
+    def dex_classes(self) -> Iterable[dict]:
         """
         Parse the dex file and returns a list of class names 
         and other information
 
-        :return: dict of class information
-        :rtype: generator
+        Returns
+        -------
+        Iteratable
+            Returns a generator of dictionaries containing the name, full_name, package_name
+            source_file, and method keys
 
+        Examples
+        --------
         >>> n.dex_dex_classes()
         """
 
@@ -313,13 +386,17 @@ class NativeDEXAnalysis():
             ))
 
     @_logger
-    def dex_strings(self) -> list:
+    def dex_strings(self) -> Iterable[list]:
         """
         Parse the dex file and returns a generator of string values
 
-        :return: generator of string values
-        :rtype: generator
+        Returns
+        -------
+        Iteratable
+            Returns a generator of strings
 
+        Examples
+        --------
         >>> n.dex_dex_strings()
         """
 
@@ -328,13 +405,18 @@ class NativeDEXAnalysis():
             yield s
 
     @_logger
-    def dex_methods(self) -> dict:
+    def dex_methods(self) -> Iterable[dict]:
         """
         Parse the dex file and returns a dictionary of method information
 
-        :return: generator for methods, their classes, method parameters and return types
-        :rtype: generator
+        Returns
+        -------
+        Iteratable
+            Returns a generator of dictionaries containing the name, class, 
+            parameters and return_type keys
 
+        Examples
+        --------
         >>> n.dex_dex_methods()
         """
 
@@ -347,13 +429,18 @@ class NativeDEXAnalysis():
             ))
 
     @_logger
-    def dex_info(self) -> lief._pylief.DEX.File.classes:
+    def dex_info(self) -> Iterable[lief._pylief.DEX.File.classes]:
         """
         Parse the dex file and returns a lief dex file object
 
-        :return: generator of dex class objects
-        :rtype: generator lief._pylief.DEX.File.classes
+        Returns
+        -------
+        Iteratable
+            Returns a generator of containing the class names and their 
+            associated methods
 
+        Examples
+        --------
         >>> n.dex_dex_info()
         """
 
@@ -375,6 +462,14 @@ class SQL(_AndroidCore):
     """
 
     def __init__(self, db_path: str):
+        """
+        The init method for the SQL class
+        
+        Parameters
+        ----------
+        db_path : str
+            Path to a valid sqlite3 database file
+        """
         self._core = _AndroidCore(None)
         self.db_path = db_path
         self._connection = sqlite3.connect(self.db_path)
@@ -386,9 +481,13 @@ class SQL(_AndroidCore):
         """
         Get all the table names from the db file
 
-        :return: List of all the table names
-        :rtype: list
+        Returns
+        -------
+        list
+            A list of table names
 
+        Examples
+        --------
         >>> s.sqldb_tables()
         """
 
@@ -404,10 +503,18 @@ class SQL(_AndroidCore):
         """
         Get all the column names for the specified table.
 
-        :param table_name str: Name of the table to use
-        :return: List of all the table names
-        :rtype: list
+        Parameters
+        ----------
+        table_name : str
+            An existing table name
 
+        Returns
+        -------
+        list
+            A list of column names from the specified table
+
+        Examples
+        --------
         >>> s.sqldb_table_column_names()
         """
 
@@ -422,10 +529,18 @@ class SQL(_AndroidCore):
         """
         Get all the data from the specified table.
 
-        :param table_name str: Name of the table to use
-        :return: List of all the table names
-        :rtype: list
+        Parameters
+        ----------
+        table_name : str
+            An existing table name
 
+        Returns
+        -------
+        list
+            Dumps an arry of table data
+
+        Examples
+        --------
         >>> s.sqldb_table_data()
         """
 
@@ -439,9 +554,13 @@ class SQL(_AndroidCore):
         Dumps a list of all sql commands. Similar to 
         ``sqlite3 file.db .dump``
 
-        :return: List of all db details
-        :rtype: list
+        Returns
+        -------
+        list
+            An array of all dumped data
 
+        Examples
+        --------
         >>> s.sqldb_dump_database()
         """
 
@@ -467,11 +586,18 @@ class Utils(_AndroidCore):
         """
         Parse xml file and return as a dict object
 
-        :param file_path: Path to xml file
-        :type file_path: str
-        :return: dict of xml file
-        :rtype: dict
+        Parameters
+        ----------
+        file_path : str
+            Path to a valid XML file
 
+        Returns
+        -------
+        list
+            A dictionary object representing the xml file
+
+        Examples
+        --------
         >>> u.utils_xml_to_dict('/path/to/file.xml)
         """
 

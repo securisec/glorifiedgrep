@@ -16,8 +16,8 @@ def test_file_database_file_paths():
     assert g.file_database_file_paths() == None
 
 
-def test_file_get_file_types():
-    assert len(g.file_get_file_types()) == 5
+# def test_file_get_file_types():
+#     assert len(g.file_get_file_types()) == 5
 
 
 def test_file_get_java_classes():

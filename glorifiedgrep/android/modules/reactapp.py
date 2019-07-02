@@ -1,7 +1,10 @@
+from __future__ import annotations
 import re
+from pathlib import Path
 
 from .androidcore import _AndroidCore
 from ...logger import _logger
+from ...core import GreppedOut
 
 
 class React(_AndroidCore):
@@ -25,17 +28,24 @@ class React(_AndroidCore):
         """
 
         path = f'{self._unzipped_path}/assets/index.android.bundle'
+        if not Path(path).exists():
+            self.log_exception('Not a react app')
+            raise TypeError('This is not a react app')
         self.log_debug(f'react path: {path}')
         return path
 
     @_logger
-    def react_find_functions(self) -> dict:
+    def react_find_functions(self) -> list:
         """
         Find a list of all global functions and their parameters
+        
+        Returns
+        -------
+        list
+            Array of function names and their parameters
 
-        :return: dict of line, function name and parameters
-        :rtype: dict
-
+        Examples
+        --------
         >>> r.react_find_functions()
         """
 
@@ -57,15 +67,22 @@ class React(_AndroidCore):
         return functions
 
     @_logger
-    def react_find_urls(self, show_code: bool=False) -> dict:
+    def react_find_urls(self, show_code: bool=False) -> GreppedOut:
         """
         Find all URL's inside the React code bundle
 
-        :param show_code: Show the full matching line, defaults to False
-        :param show_code: bool, optional
-        :return: dict of line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
         >>> r.react_find_urls()
         """
 
@@ -82,18 +99,25 @@ class React(_AndroidCore):
                 })
             )
         self.log_debug('')
-        return found
+        return GreppedOut(found)
 
     @_logger
-    def react_regex_constructor(self, show_code: bool=False) -> dict:
+    def react_regex_constructor(self, show_code: bool=False) -> GreppedOut:
         """
         Find all RexExp constructors in the code
 
-        :param show_code: Show the full matching line, defaults to False
-        :param show_code: bool, optional
-        :return: dict of line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
         >>> r.react_regex_constructor()
         """
 
@@ -110,18 +134,25 @@ class React(_AndroidCore):
                 })
             )
         self.log_debug('')
-        return found
+        return GreppedOut(found)
 
     @_logger
-    def react_xmlhttprequest_constructor(self, show_code: bool=False) -> dict:
+    def react_xmlhttprequest_constructor(self, show_code: bool=False) -> GreppedOut:
         """
         Find all XMLHttpRequest constructors in the code
 
-        :param show_code: Show the full matching line, defaults to False
-        :param show_code: bool, optional
-        :return: dict of line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
         >>> r.react_xmlhttprequest_constructor()
         """
 
@@ -138,19 +169,26 @@ class React(_AndroidCore):
                 })
             )
         self.log_debug('')
-        return found
+        return GreppedOut(found)
 
     @_logger
-    def react_dev_global(self, show_code: bool=False) -> dict:
+    def react_dev_global(self, show_code: bool=False) -> GreppedOut:
         """
         Find the __DEV__ variable and see what it is set to. 
         | `Reference <https://facebook.github.io/react-native/docs/javascript-environment.html>`__
 
-        :param show_code: Show the full matching line, defaults to False
-        :param show_code: bool, optional
-        :return: dict of line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
         >>> r.react_dev_global()
         """
 
@@ -170,16 +208,23 @@ class React(_AndroidCore):
         return found
 
     @_logger
-    def react_console_statements(self, show_code: bool=False) -> dict:
+    def react_console_statements(self, show_code: bool=False) -> GreppedOut:
         """
         Find all the console statements. This includes log, warn, error, trace etc.  
         | `Reference <https://facebook.github.io/react-native/docs/javascript-environment.html>`__
 
-        :param show_code: Show the full matching line, defaults to False
-        :param show_code: bool, optional
-        :return: dict of line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
         >>> r.react_console_statements()
         """
 
@@ -225,4 +270,4 @@ class React(_AndroidCore):
                 found['groupEnd'].append(
                     self._pdict({'line': m[0], 'match': code}))
         self.log_debug('')
-        return found
+        return GreppedOut(found)

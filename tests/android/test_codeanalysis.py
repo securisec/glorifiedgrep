@@ -32,8 +32,8 @@ def test_code_apache_http_post_request():
     assert g.code_apache_http_post_request().count == 0
 
 
-def test_code_api_builder():
-    assert g.code_api_builder().count == 59
+# def test_code_api_builder():
+#     assert g.code_api_builder().count == 59
 
 
 def test_code_apk_files():

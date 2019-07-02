@@ -1,6 +1,8 @@
+from __future__ import annotations
 import re
 from .androidcore import _AndroidCore
 from ...logger import _logger
+from ...core import GreppedOut
 from .constants import _GrepConstants, _Trackers
 
 
@@ -23,14 +25,23 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return self._android_findings['other_analysis']
 
     @_logger
-    def other_email_addresses(self, show_code=False):
+    def other_email_addresses(self, show_code=False) -> GreppedOut:
         """
         Find email addresses in the decompiled source
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_email_addresses()
         """
@@ -39,36 +50,59 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         match = self._process_match(grep)
         self._other_analysis['email'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
-    def other_chinese_chars(self, show_code=False):
+    def other_unicode_chars(self, script: str, show_code=False):
         """
-        Find chinese characters in the decompiled source
+        Find unicode characters representing differnt character sets from 
+        different languages in the decompiled apk. Supports both Unicode 
+        Scripes and Unicode Blocks. See the reference for supported ranges. 
+        | `Reference <https://www.regular-expressions.info/unicode.html>`__
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        script : string
+            Any supported Unicode Script or Unicode Blocks. Ex: ``Han`` for Chinese characters.
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_chinese_chars()
         """
-        regex = r'[\p{Han}]+'
+        regex = r'[\p{' + script + '}]+'
         g = self._run_rg(regex=regex, code=show_code)
         match = self._process_match(g)
         self._other_analysis['chinese'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def other_ip_address(self, show_code=False):
         """
         Find IP addresses in the decompiled source
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_ip_address()
         """
@@ -77,17 +111,26 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         match = self._process_match(g)
         self._other_analysis['ipaddress'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def other_http_urls(self, show_code=False):
         """
         Find HTTP urls in the decompiled source
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_http_urls()
         """
@@ -96,17 +139,26 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         match = self._process_match(g, is_url=True)
         self._other_analysis['http_url'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def other_all_urls(self, show_code=False):
         """
         Find all urls in the decompiled source
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_all_urls()
         """
@@ -115,17 +167,26 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         match = self._process_match(g, is_url=True)
         self._other_analysis['urls'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def other_file_urlhandler(self, show_code=False):
         """
         Find all ``file://`` urls in the decompiled source
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_file_urlhandler()
         """
@@ -134,17 +195,26 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         match = self._process_match(g, is_url=True)
         self._other_analysis['file_handler'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def other_content_urlhandler(self, show_code=False):
         """
         Find all ``content://`` urls in the decompiled source
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_content_urlhandler()
         """
@@ -153,17 +223,26 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         match = self._process_match(g, is_url=True)
         self._other_analysis['content_uri'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def other_websocket_urlhandler(self, show_code=False):
         """
         Find all ``ws://`` or ``wss://`` urls in the decompiled source
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_websocket_urlhandler()
         """
@@ -172,17 +251,26 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         match = self._process_match(g, is_url=True)
         self._other_analysis['websocket'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def other_secret_keys(self, show_code=False):
         """
         Find all urls in the decompiled source
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_secret_keys()
         """
@@ -191,17 +279,26 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         match = self._process_match(g)
         self._other_analysis['secret_keys'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def other_aws_keys(self, show_code=False):
         """
         Find all AWS keys in the decompiled source
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_aws_keys()
         """
@@ -210,17 +307,26 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         match = self._process_match(g)
         self._other_analysis['aws_keys'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def other_github_token(self, show_code=False):
         """
         Find all Github tokens in the decompiled source
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_github_token()
         """
@@ -229,17 +335,26 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         match = self._process_match(g)
         self._other_analysis['github_token'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def other_password_in_url(self, show_code=False):
         """
         Find all passwords in urls. Usually used for basic authentication
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_password_in_url()
         """
@@ -248,17 +363,26 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         match = self._process_match(g)
         self._other_analysis['password_in_url'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def other_google_ads_import(self, show_code=False):
         """
         Find imports relevant to Google ads
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_google_ads_import()
         """
@@ -267,7 +391,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         match = self._process_match(g)
         self._other_analysis['goole_ads_import'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def other_find_trackers_ads(self):
@@ -275,9 +399,19 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         Find trackers included in the app. Currently it looks for 
         135 trackers.
 
-        :return: name, line number and match
-        :rtype: list
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_find_trackers_ads()
         """
@@ -292,7 +426,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
                 match.append(k)
         self._other_analysis['trackers'] = match
         self.log_debug('')
-        return match
+        return GreppedOut(match)
 
     @_logger
     def other_ad_networks(self, show_code=False) -> dict:
@@ -301,10 +435,19 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         | `Reference <https://github.com/lioulei1317/Android-Demo/blob/master/javaapk.com-360Satety/src/com/anjoyo/anjoyosafety/util/AdManagerUtil.java>`__
         | `Reference <https://www.appbrain.com/stats/libraries/ad-networks>`__
 
-        :param bool show_code: See the full line of code, defaults to False
-        :return: name, line number and match
-        :rtype: dict
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
 
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.other_ad_networks()
         """
@@ -320,4 +463,4 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         self._other_analysis['trackers'] = match
         self.log_debug('')
         match['found'] = list(match.keys())
-        return match
+        return GreppedOut(match)
