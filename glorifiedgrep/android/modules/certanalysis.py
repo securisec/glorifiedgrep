@@ -72,7 +72,7 @@ class _CertAnalysis(_AndroidCore):
     def cert_public_key(self) -> GreppedOut:
         """
         Get the public key from CERT.RSA
-        
+
         Returns
         -------
         GreppedOut : object
@@ -98,7 +98,7 @@ class _CertAnalysis(_AndroidCore):
     def cert_certificate(self) -> GreppedOut:
         """
         Returns a PEM encoded certificate
-        
+
         Returns
         -------
         GreppedOut : object
@@ -121,7 +121,7 @@ class _CertAnalysis(_AndroidCore):
     def cert_digest(self) -> dict:
         """
         Returns the digest hash in md5. sha1 and sha256
-        
+
         Returns
         -------
         dict
@@ -143,7 +143,7 @@ class _CertAnalysis(_AndroidCore):
     def cert_issuer(self) -> GreppedOut:
         """
         The entity that verified the information and signed the certificate
-        
+
         Returns
         -------
         GreppedOut : object
@@ -165,7 +165,7 @@ class _CertAnalysis(_AndroidCore):
     def cert_valid_dates(self) -> dict:
         """
         The that the certificate is valid before, after and if expired
-        
+
         Returns
         -------
         dict
@@ -192,7 +192,7 @@ class _CertAnalysis(_AndroidCore):
         """
         Used to uniquely identify the certificate within a CA's systems. 
         In particular this is used to track revocation information
-        
+
         Returns
         -------
         int
@@ -214,7 +214,7 @@ class _CertAnalysis(_AndroidCore):
     def cert_signature_algorithm(self) -> str:
         """
         The algorithm used to sign the public key certificate
-        
+
         Returns
         -------
         str
@@ -235,7 +235,7 @@ class _CertAnalysis(_AndroidCore):
     def cert_version(self) -> int:
         """
         The certificate version number
-        
+
         Returns
         -------
         int
@@ -256,7 +256,7 @@ class _CertAnalysis(_AndroidCore):
     def cert_bits(self) -> int:
         """
         Certificate bit
-        
+
         Returns
         -------
         int
@@ -277,7 +277,7 @@ class _CertAnalysis(_AndroidCore):
     def cert_subject(self) -> list:
         """
         The entity a certificate belongs to: a machine, an individual, or an organization.
-        
+
         Returns
         -------
         dict

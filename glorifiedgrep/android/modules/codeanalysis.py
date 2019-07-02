@@ -33,7 +33,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -56,12 +56,12 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         """
         Find all code which is using Java createTempFile 
         | `Reference <https://developer.android.com/reference/java/io/File>`__
-        
+
         Parameters
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -90,7 +90,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -119,7 +119,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -150,7 +150,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -180,7 +180,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -211,7 +211,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -241,7 +241,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -269,7 +269,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -297,7 +297,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -326,7 +326,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -356,7 +356,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -383,7 +383,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -413,7 +413,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -443,7 +443,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -472,7 +472,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -505,7 +505,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -533,7 +533,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -561,7 +561,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -590,7 +590,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -619,7 +619,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -648,7 +648,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -686,7 +686,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -717,7 +717,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -749,7 +749,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -778,7 +778,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -807,7 +807,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -835,7 +835,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -863,7 +863,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -892,7 +892,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -922,7 +922,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -951,7 +951,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -980,7 +980,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1012,7 +1012,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1040,7 +1040,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1069,7 +1069,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1097,7 +1097,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1126,7 +1126,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1155,7 +1155,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1184,7 +1184,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1212,7 +1212,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1240,7 +1240,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1269,7 +1269,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1298,7 +1298,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1325,7 +1325,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1352,7 +1352,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1379,7 +1379,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1408,7 +1408,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1435,7 +1435,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1462,7 +1462,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1489,7 +1489,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1516,7 +1516,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1564,7 +1564,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1612,7 +1612,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1641,7 +1641,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1669,7 +1669,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1697,7 +1697,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1725,7 +1725,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1753,7 +1753,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1781,7 +1781,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1809,7 +1809,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1837,7 +1837,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1865,7 +1865,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1893,7 +1893,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1921,7 +1921,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1949,7 +1949,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -1979,7 +1979,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2003,7 +2003,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2031,7 +2031,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2058,7 +2058,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2085,7 +2085,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2117,7 +2117,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2145,7 +2145,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2173,7 +2173,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2203,7 +2203,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2232,7 +2232,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2260,7 +2260,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2288,7 +2288,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2316,7 +2316,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2344,7 +2344,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2373,7 +2373,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2401,7 +2401,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2430,7 +2430,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2458,7 +2458,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2488,7 +2488,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2517,7 +2517,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2545,7 +2545,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2573,7 +2573,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2601,7 +2601,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2631,7 +2631,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2659,7 +2659,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2688,7 +2688,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2718,7 +2718,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2746,7 +2746,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2776,7 +2776,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2806,7 +2806,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2836,7 +2836,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2866,7 +2866,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2896,7 +2896,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2925,7 +2925,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2953,7 +2953,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -2983,7 +2983,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -3013,7 +3013,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -3043,7 +3043,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object
@@ -3073,7 +3073,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ----------
         show_code : bool, optional
             Show the full matched line, by default False
-        
+
         Returns
         -------
         GreppedOut : object

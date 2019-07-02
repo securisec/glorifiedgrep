@@ -31,13 +31,17 @@ class _FileAnalysys(_AndroidCore):
         return self._android_findings['file_analysis']
 
     @_logger
-    def file_hash_of_apk(self):
+    def file_hash_of_apk(self) -> dict:
         """
         Generates the MD5, SHA1 and SHA256 hashes of the APK.
 
-        :return: Returns dict containing MD5, SHA1 and SHA256 hash of APK.
-        :rtype: dict
+        Returns
+        -------
+        dict
+            Returns dict containing MD5, SHA1 and SHA256 hash of APK.
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.file_hash_of_apk()
@@ -56,13 +60,17 @@ class _FileAnalysys(_AndroidCore):
         return _hash_dict
 
     @_logger
-    def file_native_code(self):
+    def file_native_code(self) -> list:
         """
         Returns a string of available native code compitability if present
 
-        :return: List of native code presence
-        :rtype: list
+        Returns
+        -------
+        list
+            List of native code presence
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.file_native_code()
@@ -76,19 +84,29 @@ class _FileAnalysys(_AndroidCore):
         )]
 
     @_logger
-    def file_get_file_types(self, describe: bool=False) -> dict:
+    def file_get_file_types(self, describe: bool = False) -> dict:
         """
         Returns the magic values of all files found after unzipping the APK. 
         Keys are sorted by mime values of the files
 
-        :param describe bool: Get full description of file. Defaults to False
-        :return: Dictionary of all files and their magic headers
-        :rtype: dict
+        Parameters
+        ----------
+        describe : bool, optional
+            Get full description of file. Defaults to False
 
+        Returns
+        -------
+        dict
+            Dictionary of all files and their magic headers
+
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/file')
         >>> a.file_get_file_types()
         """
         # ! WINDOWS has path problems here
+        # TODO change this with Pathlib for windows support
         def cdict(): return defaultdict(cdict)
         found = cdict()
         for p in self._get_paths_from_unzipped(self._unzipped_path):
@@ -112,17 +130,22 @@ class _FileAnalysys(_AndroidCore):
         return dict(found)
 
     @_logger
-    def file_get_java_classes(self):
+    def file_get_java_classes(self) -> list:
         """
         Returns a list of found JAVA classes
 
-        :return: JAVA classes
-        :rtype: list
+        Returns
+        -------
+        list
+            JAVA classes
 
+        Examples
+        --------
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.file_get_java_classes()
         """
         # ! WINDOWS this will have the same problems as get_file_types
+        # TODO change this with pathlib for windows support
         found = []
         for i in self._get_paths_from_unzipped(f'{self._java_sources}',
                                                glob_pattern='**/*.java'):
@@ -133,63 +156,82 @@ class _FileAnalysys(_AndroidCore):
         return found
 
     @_logger
-    def file_kivy_app(self):
+    def file_kivy_app(self) -> bool:
         """
         This method checks to see if the app is a Kivy compiled application. 
         Kivy is a python framework for application development
 
-        :return: true or false
-        :rtype: str
+        Returns
+        -------
+        bool
+            True if kivy app, else False
 
+        Examples
+        --------
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.file_kivy_app()
         """
         for k in self.file_get_java_classes():
             if 'kivy' in k:
                 self.log_debug('')
-                return ['true']
+                return True
         self.log_debug('')
-        return ['false']
+        return False
 
     @_logger
-    def file_react_app(self):
+    def file_react_app(self) -> bool:
         """
         This method checks to see if the app is developed using the Facebook 
         React framework
 
-        :return: true or false
-        :rtype: str
+        Returns
+        -------
+        bool
+            True if React app, else False
 
+        Examples
+        --------
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.file_react_app()
         """
         for f in self._get_paths_from_unzipped(path=f'{self._output_dir}/unzipped',
                                                glob_pattern='**/*'):
             if 'index.android.bundle' in str(f):
-                return ['true']
+                return True
         self.log_debug('')
-        return ['false']
+        return False
 
     @_logger
-    def file_other_langs(self):
+    def file_other_langs(self) -> dict:
         """
         Checks to see if any other frameworks is being used in this app
 
-        :return: Other frameworks
-        :rtype: list
+        Returns
+        -------
+        dict
+            Dict of other android development frameworks
+
+        Examples
+        --------
+        >>> a = GlorifiedAndroid('/path/to/apk')
+        >>> a.file_other_langs()
         """
         self.log_debug('')
-        return [{'kivy': self.file_kivy_app()[0],
-                 'react': self.file_react_app()[0]}]
+        return {'kivy': self.file_kivy_app(),
+                'react': self.file_react_app()}
 
     @_logger
-    def file_xml_files(self):
+    def file_xml_files(self) -> list:
         """
         Returns a list of found xml files
 
-        :return: xml files
-        :rtype: list
+        Returns
+        -------
+        list
+            Array of XML files
 
+        Examples
+        --------
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.file_xml_files()files
         """
@@ -200,13 +242,17 @@ class _FileAnalysys(_AndroidCore):
         return found
 
     @_logger
-    def file_js_files(self):
+    def file_js_files(self) -> list:
         """
         Returns a list of found js files
 
-        :return: js files
-        :rtype: list
+        Returns
+        -------
+        list
+            Array of JS files
 
+        Examples
+        --------
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.file_js_files()files
         """
@@ -218,13 +264,17 @@ class _FileAnalysys(_AndroidCore):
         return found
 
     @_logger
-    def file_html_files(self):
+    def file_html_files(self) -> list:
         """
         Returns a list of found html files
 
-        :return: html files
-        :rtype: list
+        Returns
+        -------
+        list
+            Array of HTML files
 
+        Examples
+        --------
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.file_html_files()files
         """
@@ -235,13 +285,17 @@ class _FileAnalysys(_AndroidCore):
         return found
 
     @_logger
-    def file_jar_files(self):
+    def file_jar_files(self) -> list:
         """
         Returns a list of found jar files
 
-        :return: jar files
-        :rtype: list
+        Returns
+        -------
+        list
+            Array of JAR files
 
+        Examples
+        --------
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.file_jar_files()files
         """
@@ -252,15 +306,19 @@ class _FileAnalysys(_AndroidCore):
         return found
 
     @_logger
-    def file_resource_xml(self):
+    def file_resource_xml(self) -> list:
         """
         Returns a list of found xml files from the resources directory. 
         These files usually contains configuration options and may 
         contain secrets.
 
-        :return: xml files
-        :rtype: list
+        Returns
+        -------
+        list
+            Array of resource xml files
 
+        Examples
+        --------
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.file_resource_xml()files
         """
@@ -271,15 +329,19 @@ class _FileAnalysys(_AndroidCore):
         return found
 
     @_logger
-    def file_interesting(self):
+    def file_interesting(self) -> list:
         """
         Returns a list of found bks keystore files
 
-        :return: xml files
-        :rtype: list
+        Returns
+        -------
+        list
+            Array of interesting filetypes
 
+        Examples
+        --------
         >>> a = GlorifiedAndroid('/path/to/apk')
-        >>> a.file_interesting()files
+        >>> a.file_interesting()
         """
         found = []
         for ext in ['.bks', '.db', '.crt', '.properties']:
@@ -290,13 +352,17 @@ class _FileAnalysys(_AndroidCore):
         return found
 
     @_logger
-    def file_res_strings(self):
+    def file_res_strings(self) -> list:
         """
         This method looks enumerates the strings found in sources/res/values/strings.xml.
 
-        :return: dict of strings in strings.xml
-        :rtype: dict
+        Returns
+        -------
+        list
+            Array of found strings
 
+        Examples
+        --------
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.file_res_strings()
         """
@@ -314,14 +380,17 @@ class _FileAnalysys(_AndroidCore):
         return s
 
     @_logger
-    def file_activities_handling_passwords(self):
+    def file_activities_handling_passwords(self) -> list:
         """
         This method enumerates the xml files found in sources/res/layout/ and 
         looks for the textPassword value to see which activities handle passwords.
 
-        :return: a list of activities that handle passwords
-        :rtype: dict
+        Returns
+        -------
+        list
 
+        Examples
+        --------
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.file_activities_handling_passwords()
         """
@@ -341,9 +410,13 @@ class _FileAnalysys(_AndroidCore):
         This method enumerates for sqlite database files, and returns 
         a list of their paths
 
-        :return: a list of database file paths
-        :rtype: list
+        Returns
+        -------
+        list
+            a list of database file paths
 
+        Examples
+        --------
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.file_database_file_paths()
         """
@@ -356,9 +429,13 @@ class _FileAnalysys(_AndroidCore):
         This method enumerates for shared objects, and returns 
         a list of their paths
 
-        :return: a list of database file paths
-        :rtype: list
+        Returns
+        -------
+        list
+            a list of database file paths
 
+        Examples
+        --------
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.file_shared_libs_file_paths()
         """

@@ -15,6 +15,9 @@
 # sys.path.insert(0, os.path.abspath('.'))
 import glorifiedgrep
 
+def setup(app):
+    app.add_css_file('custom.css')
+
 
 # -- Project information -----------------------------------------------------
 
