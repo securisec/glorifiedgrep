@@ -2,7 +2,7 @@
 
 
 [![Build Status](https://travis-ci.com/securisec/glorifiedgrep.svg?token=8GQfGnTK7S1NU7bKCqeR&branch=master)](https://travis-ci.com/securisec/glorifiedgrep)
-[![Read the Docs](https://img.shields.io/readthedocs/glorifiedgrep.svg)]()
+[![Read the Docs](https://img.shields.io/readthedocs/glorifiedgrep.svg)](https://glorifiedgrep.readthedocs.io/en/latest/)
 
 # Glorified Grep
 

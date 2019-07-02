@@ -13,7 +13,9 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-import glorifiedgrep
+# import glorifiedgrep
+
+master_doc = 'index'
 
 def setup(app):
     app.add_css_file('custom.css')
@@ -49,10 +51,10 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'alabaster'
 html_logo = '../logo.png'
 html_theme_options = {
-    'collapse_navigation': False
+    # 'collapse_navigation': False
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
