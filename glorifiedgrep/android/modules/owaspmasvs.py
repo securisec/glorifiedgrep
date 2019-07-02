@@ -1,7 +1,7 @@
 from __future__ import annotations
 from .androidcore import _AndroidCore
 from ...logger import _logger
-from ...core import GreppedOut
+from ...out import GreppedOut
 from .constants import _GrepConstants
 
 

@@ -4,7 +4,7 @@ from OpenSSL.crypto import X509, _ffi, _lib
 
 from .androidcore import _AndroidCore
 from ...logger import _logger
-from ...core import GreppedOut
+from ...out import GreppedOut
 
 
 class _CertAnalysis(_AndroidCore):

@@ -15,27 +15,28 @@ class GlorifiedAndroid(_ManifestAnalysis, _CodeAnalysis, _FileAnalysys,
     Main class that is instantiated when using GlorifiedAndroid.
     """
 
-    def run_all_analysis(self):
-        """
-        Method runs all available analysis checks on the app and 
-        returns the complete dictionary. This is not the best way to use 
-        GlorifiedAndroid as it generates a lot of data and is much slower. This method 
-        was designed for testing only.
+    # TODO deprecate this
+    # def run_all_analysis(self):
+    #     """
+    #     Method runs all available analysis checks on the app and 
+    #     returns the complete dictionary. This is not the best way to use 
+    #     GlorifiedAndroid as it generates a lot of data and is much slower. This method 
+    #     was designed for testing only.
 
-        :return: Analysis results as a dictionary
-        :rtype: dict
+    #     :return: Analysis results as a dictionary
+    #     :rtype: dict
 
-        >>> a = GlorifiedAndroid('/path/to/apk')
-        >>> a.run_all_analysis(manifest_only=True)
-        """
-        # run all app analysis
-        self.all_manifest_analysis()
-        self.all_file_analysis()
-        self.all_cert_analysis()
-        self.all_code_analysis()
-        self.all_owasp_analysis()
-        self.all_other_analysis()
-        return self._android_findings
+    #     >>> a = GlorifiedAndroid('/path/to/apk')
+    #     >>> a.run_all_analysis(manifest_only=True)
+    #     """
+    #     # run all app analysis
+    #     self.all_manifest_analysis()
+    #     self.all_file_analysis()
+    #     self.all_cert_analysis()
+    #     self.all_code_analysis()
+    #     self.all_owasp_analysis()
+    #     self.all_other_analysis()
+    #     return self._android_findings
 
     def search_methods(self, regex: str) -> list:
         """

@@ -2,7 +2,7 @@ from __future__ import annotations
 import re
 from .androidcore import _AndroidCore
 from ...logger import _logger
-from ...core import GreppedOut
+from ...out import GreppedOut
 from .constants import _GrepConstants, _Trackers
 
 
@@ -53,7 +53,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return GreppedOut(match)
 
     @_logger
-    def other_unicode_chars(self, script: str, show_code=False):
+    def other_unicode_chars(self, script: str='Hangul', show_code=False):
         """
         Find unicode characters representing differnt character sets from 
         different languages in the decompiled apk. Supports both Unicode 
@@ -62,7 +62,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
 
         Parameters
         ----------
-        script : string
+        script : string, default Hangul
             Any supported Unicode Script or Unicode Blocks. Ex: ``Han`` for Chinese characters.
         show_code : bool, optional
             Show the full matched line, by default False

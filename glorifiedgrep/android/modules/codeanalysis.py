@@ -1,6 +1,6 @@
 from __future__ import annotations
 from .androidcore import _AndroidCore
-from ...core import GreppedOut
+from ...out import GreppedOut
 from ...logger import _logger
 from .constants import _GrepConstants
 
@@ -1545,12 +1545,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
             f = f.decode('utf-8')
             line = f.split(':')
             file_path = self._re_remove_dir_prefix(line[0])
-            if self.match_only == False:
-                if not any(white in file_path for white in self.FILTER):
-                    match_handler()
-            elif self.match_only:
-                if any(white in file_path for white in self.FILTER):
-                    match_handler()
+            match_handler()
         self._code_analysis['string_constants'] = final
         self.log_debug('')
         return GreppedOut(final)
@@ -1593,12 +1588,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
             line = f.split(':')
             # print(line)
             file_path = self._re_remove_dir_prefix(line[0])
-            if self.match_only == False:
-                if not any(white in file_path for white in self.FILTER):
-                    match_handler()
-            elif self.match_only:
-                if any(white in file_path for white in self.FILTER):
-                    match_handler()
+            match_handler()
         self._code_analysis['byte_constants'] = final
         self.log_debug('')
         return GreppedOut(final)
