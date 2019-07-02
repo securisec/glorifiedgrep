@@ -6,7 +6,9 @@ script:
 - pip install -r requirements.txt
 - pip install pytest==4.6.3
 - pip install decorator
-- wget https://github.com/BurntSushi/ripgrep/releases/download/11.0.1/ripgrep_11.0.1_amd64.deb -O /tmp/ripgrep
+- pip install -e .
+- wget https://github.com/BurntSushi/ripgrep/releases/download/11.0.1/ripgrep_11.0.1_amd64.deb
+  -O /tmp/ripgrep
 - sudo dpkg -i /tmp/ripgrep
 - wget https://github.com/skylot/jadx/releases/download/v1.0.0/jadx-1.0.0.zip -O /tmp/jadx.zip
 - unzip /tmp/jadx.zip -d /tmp/jadx
@@ -14,13 +16,11 @@ script:
 - java -version
 - rg --version
 - jadx --version
-
 - pytest --disable-pytest-warning
-
 cache: pip
 notifications:
   slack:
-    secure: vM6MO1lZ8iVkbpgLGlvjPXBrq4XALgS/3nqOqXbUO8qSHxCbIeWSphalxvEpM1O2xkXLIayVMkaYECl5n9BLtYrcq4hV/FrKlBud03Mw9aAJcW1fTIuYQaFLYCdbhcfor1C/d3dZJ/eIGI9jL5wXSDNGn5XxWKnk27TbYZLDF/gq1t8zEe81aQ7BgioS1NV8+dpAWVPzySCaLwNENyIe0hxvGIj98wDKb6lot2XzpGwgcP1braIWQ2NTZxKY8rVpjShrLTikYrRLN/W/NbDpTx5f2MzvJqzjeU913HffpQsDVSQ06gbzClmq4yPVAB0yBjs2WjiYRGnhdh83ROESM3wy2SxGX51vKEP0hffK3A8W3rLtxxtlhOFPmw6ns6rWc//C42m5hZBlFnedmkNa8MB/MrGWXYFTJ61Tvq8xKxdq03nYfyhjlmoOSao3litIE5XkJky/51202oyS3NnbaL+BXgtPTU39zJf9s3LROK7XgkVTF8Wy03T3IugkU5xsseCfDQg+rTGj0SPcWMZTSigD9PEfJ6H1pKWM2K2L1JxrpKrsqzAnwpZR5IBDUyI46CJGyU+9QaNjbl72K5PBSxTrTGe2OVA6zYb24tYTyjj4FtGSGxmcNZBSjFeqrlu1XnC0wyvvYTnuBIze8aAB8XtT7IOZ9HfWy3Hvrgxz/sY=
+    secure: Tt7L7TroscMZ6pqDIrWh85prPnhmRLdUdcLbXX9hPNX4Yj+EB2woBOB1EUfvSzvlvbfp9aLp+EW7fZVt17qS3qBI68HHECnVJIFqGgxlg5Dx7FyZfye1rt3YQZ0ExXSzWOgUTKzb59Bdct9t1z/f3L4Iar5cWYiJlp5lb/DgBK2WaTmvoCC7Vx7GEhAANFJe4vKRfB9+NG5zM7zAapYIHYA1uYVuARscy6dyqIKvuPICucMCEHTayk5VICcrl9i+48YiJIfJp+lR2H08OB+Jsf1+4yET9Yf/UKpWHiEOAOwVe5gOTSgIoMm6Ri6nk/cmTkyKVgemng7perf6MGHbvf7rMhZGeCotDj8PwWhzsmlIB7WOMYUZIzBC1r1zvTiAgs8RyP8gAG0+krw3iKZmqdNU/7h0qXvPvX6RLpiaDoKE/4tPhHTFxKNkwdi3mSj+OGi9AcaHLPE1fX4OvgO0bpe4zd6A6C0FAb0keGaPcZgUQDNqZOFQ1ySZiHjgrDquaZ2XhlGsUD2A0mG4vdhGA8JvDGEbv5gppqYM7aNStactWIbVD8O+E4pa58gK0qkhnbhppgFHVDk50KQuO3usgqTqgJY/nnQzaP9kLgf+dO03kZnBK/NTeGOqiJaIaV/N8B2ryFpOpSovqPMHTLt6BPB4PppBXPXgHnAs5tPJQ/Y=
 deploy:
   provider: pypi
   user: securisec

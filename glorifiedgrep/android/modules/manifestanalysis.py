@@ -42,14 +42,18 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
         return self._android_findings['manifest_analysis']
 
     @_logger
-    def manifest_package_name(self) -> list:
+    def manifest_package_name(self) -> str:
         """
         Returns the package name of the APK
         | `Reference <https://developer.android.com/guide/topics/manifest/manifest-element>`__
 
-        :return: package name
-        :rtype: list
+        Returns
+        -------
+        str
+            Package name as a string
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_package_name()
@@ -57,17 +61,21 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
         p = self._parse_manifest_xml()['package']
         self._manifest_analysis['package_name'] = [p]
         self.log_debug('')
-        return [p]
+        return p
 
     @_logger
-    def manifest_version_name(self) -> list:
+    def manifest_version_name(self) -> str:
         """
         Returns the version name from the APK
         | `Reference <https://developer.android.com/guide/topics/manifest/manifest-element>`__
 
-        :return: version name
-        :rtype: list
+        Returns
+        -------
+        str
+            Version name from the manifest. None if not found
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_version_name()
@@ -76,18 +84,26 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             p = self._parse_manifest_xml()['versionName']
             self._manifest_analysis['version_name'] = [p]
             self.log_debug('')
-            return [p]
+            return p
         except KeyError:
             self.log_error('Key not found')
-            return []
+            return None
 
     @_logger
     def manifest_main_activity(self) -> dict:
         """
         Returns the main launchable activity as a dict
 
-        :return: Main activity and its attributes
-        :rtype: dict
+        Returns
+        -------
+        dict
+            Main activity and its attributes
+
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
+        >>> a = GlorifiedAndroid('/path/to/apk)
+        >>> a.manifest_main_activity()
         """
 
         activities = self.manifest_activities()
@@ -99,14 +115,18 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
                 continue
 
     @_logger
-    def manifest_version_code(self) -> list:
+    def manifest_version_code(self) -> int:
         """
         Returns the version code from the APK
         | `Reference <https://developer.android.com/guide/topics/manifest/manifest-element>`__
 
-        :return: version code
-        :rtype: list
+        Returns
+        -------
+        int
+            Version code. None if not found
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_version_code()
@@ -115,19 +135,23 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             p = self._parse_manifest_xml()['versionCode']
             self._manifest_analysis['version_code'] = [p]
             self.log_debug('')
-            return [p]
+            return int(p)
         except KeyError:
             self.log_error('Key not found')
-            return []
+            return None
 
     @_logger
-    def manifest_platform_build_version_name(self) -> list:
+    def manifest_platform_build_version_name(self) -> str:
         """
         Returns the platform build version name from the APK
 
-        :return: platform build version name
-        :rtype: list
+        Returns
+        -------
+        str
+            Platform version name
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_platform_build_version_name()
@@ -136,19 +160,23 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             p = self._parse_manifest_xml()['platformBuildVersionCode']
             self._manifest_analysis['platform_build_version_name'] = [p]
             self.log_debug('')
-            return [p]
+            return p
         except KeyError:
             self.log_error('Key not found')
-            return []
+            return None
 
     @_logger
-    def manifest_platform_build_version_code(self) -> list:
+    def manifest_platform_build_version_code(self) -> int:
         """
         Returns the platform build version code from the APK
 
-        :return: platform build version code
-        :rtype: list
+        Returns
+        -------
+        int
+            Platform version code
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_platform_build_version_code()
@@ -157,20 +185,24 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             p = self._parse_manifest_xml()['platformBuildVersionCode']
             self._manifest_analysis['platform_build_version_code'] = [p]
             self.log_debug('')
-            return [p]
+            return int(p)
         except KeyError:
             self.log_error('Key not found')
-            return []
+            return None
 
     @_logger
-    def manifest_target_sdk(self) -> list:
+    def manifest_target_sdk(self) -> int:
         """
         Returns the target SDK from the APK
         | `Reference <https://developer.android.com/guide/topics/manifest/uses-sdk-element>`__
 
-        :return: target SDK
-        :rtype: list
+        Returns
+        -------
+        int
+            Target SDK number
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_target_sdk()
@@ -179,20 +211,24 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             p = self._parse_manifest_xml()['uses-sdk']['targetSdkVersion']
             self._manifest_analysis['target_sdk'] = [p]
             self.log_debug('')
-            return [p]
+            return int(p)
         except KeyError:
             self.log_error('Key not found')
-            return []
+            return None
 
     @_logger
-    def manifest_min_sdk(self) -> list:
+    def manifest_min_sdk(self) -> int:
         """
         Returns the minimum SDK from the APK
         | `Reference <https://developer.android.com/guide/topics/manifest/uses-sdk-element>`__
 
-        :return: minimum SDK
-        :rtype: list
+        Returns
+        -------
+        int
+            Min SDK
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_min_sdk()
@@ -202,41 +238,49 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
                 'uses-sdk']['minSdkVersion']
             self._manifest_analysis['min_sdk'] = [p]
             self.log_debug('')
-            return [p]
+            return int(p)
         except KeyError:
             self.log_error('Key not found')
-            return []
+            return None
 
     @_logger
-    def manifest_android_version(self) -> list:
+    def manifest_android_version(self) -> dict:
         """
         Returns the version number matching for min and target sdk.
 
-        :return: Android versions based on min and target sdk
-        :rtype: list
+        Returns
+        -------
+        dict
+            Android versions based on min and target sdk
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_android_version()
         """
         min_sdk = [x for x in _AppAnalysisConstants._ANDROID_VERSIONS
-                   if x['api'] == str(self.manifest_min_sdk()[0])][0]
+                   if x['api'] == str(self.manifest_min_sdk())][0]
         target_sdk = [x for x in _AppAnalysisConstants._ANDROID_VERSIONS
-                      if x['api'] == str(self.manifest_target_sdk()[0])][0]
+                      if x['api'] == str(self.manifest_target_sdk())][0]
         match = {'min_sdk': min_sdk, 'target_sdk': target_sdk}
         self._manifest_analysis['android_version'] = match
         self.log_debug('')
         return match
 
     @_logger
-    def manifest_uses_configuration(self) -> dict:
+    def manifest_uses_configuration(self) -> list:
         """
         Returns the uses-configuration and all attributes from the APK
         | `Reference <https://developer.android.com/guide/topics/manifest/uses-configuration-element>`__
 
-        :return: uses configuration
-        :rtype: dict
+        Returns
+        -------
+        list
+            uses configuration. Returns None if none found
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.uses_configuration()
@@ -248,17 +292,21 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             return p
         except KeyError:
             self.log_error('Key not found')
-            return []
+            return None
 
     @_logger
-    def manifest_uses_library(self) -> dict:
+    def manifest_uses_library(self) -> list:
         """
         Returns the uses-library and all attributes from the APK
         | `Reference <https://developer.android.com/guide/topics/manifest/uses-library-element>`__
 
-        :return: uses library
-        :rtype: dict
+        Returns
+        -------
+        list
+            uses library
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_uses_library()
@@ -271,19 +319,27 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             return p
         except KeyError:
             self.log_error('Key not found')
-            return []
+            return None
 
     @_logger
-    def manifest_uses_permission(self, merged: bool=True) -> list:
+    def manifest_uses_permission(self, merged: bool = True) -> list:
         """
         Returns a list of application permission and their attributes. This 
         is the main way stating permissions in AndroidManifest.xml file 
         | `Reference <https://developer.android.com/guide/topics/manifest/uses-permission-element>`__
 
-        :param bool merged: Merge the two permisison types into one list
-        :return: Permissions and their attributes
-        :rtype: list
+        Parameters
+        ----------
+        merged : bool, optional
+            Merge the two permisison types into one list defaults to True
 
+        Returns
+        -------
+        list
+            Permissions and their attributes
+
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_uses_permissions()
@@ -298,15 +354,23 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             return []
 
     @_logger
-    def manifest_permission(self, merged: bool=True) -> list:
+    def manifest_permission(self, merged: bool = True) -> list:
         """
         Returns a list of application permission and their attributes
         | `Reference <https://developer.android.com/guide/topics/manifest/permission-element>`__
 
-        :param bool merged: Merge the two permisison types into one list
-        :return: Permissions and their attributes
-        :rtype: list
+        Parameters
+        ----------
+        merged : bool
+            Merge the two permisison types into one list. Defaults to True
 
+        Returns
+        -------
+        list
+            Permissions and their attributes
+
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_permission()
@@ -321,14 +385,16 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             return []
 
     @_logger
-    def manifest_bind_permissions(self):
+    def manifest_bind_permissions(self) -> list:
         """
         Returns a list of permissions that have the BIND property. This 
         allows this permission scope to be executed with the scope of the system
 
-        :return: List of BIND permissions
-        :rtype: list
+        list
+            List of BIND permissions
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_bind_permissions()
@@ -340,15 +406,19 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_error('Exception happened')
 
     @_logger
-    def manifest_custom_permission(self) -> dict:
+    def manifest_custom_permission(self) -> list:
         """
         Parses the manifest for permissions and returns a dict of only 
         custom permissions.
         | `Referene <https://github.com/OWASP/owasp-mstg/blob/master/Document/0x05h-Testing-Platform-Interaction.md#testing-app-permissions>`__
 
-        :return: Custom permissions
-        :rtype: dict
+        Returns
+        -------
+        list
+            Custom permissions
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_custom_permission()
@@ -373,16 +443,20 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
         return final
 
     @_logger
-    def manifest_signature_permission(self) -> dict:
+    def manifest_signature_permission(self) -> list:
         """
         Parses the manifest for permissions and returns a dict of only 
         signature permissions
         | `Reference Android SDK <https://developer.android.com/guide/topics/permissions/overview#signature_permissions>`__
         | `Referene <https://github.com/OWASP/owasp-mstg/blob/master/Document/0x05h-Testing-Platform-Interaction.md#testing-app-permissions>`__
 
-        :return: Signature permissions
-        :rtype: dict
+        Returns
+        -------
+        list
+            Signature permissions
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_signature_permission()
@@ -410,16 +484,20 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
         return final
 
     @_logger
-    def manifest_dangerous_permission(self):
+    def manifest_dangerous_permission(self) -> list:
         """
         Parses the manifest for permissions and returns a dict of only 
         dangerous permissions
         | `Reference Android SDK <https://developer.android.com/guide/topics/permissions/overview#dangerous_permissions>`__
         | `Referene <https://github.com/OWASP/owasp-mstg/blob/master/Document/0x05h-Testing-Platform-Interaction.md#testing-app-permissions>`__
 
-        :return: Dangerous permissions
-        :rtype: dict
+        Returns
+        -------
+        list
+            Dangerous permissions
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_dangerous_permission()
@@ -447,15 +525,19 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
         return final
 
     @_logger
-    def manifest_intent_uri_filter(self):
+    def manifest_intent_uri_filter(self) -> list:
         """
         Parses the manifest for permissions and returns a dict of only 
         dangerous permissions
         | `Referene <https://github.com/OWASP/owasp-mstg/blob/master/Document/0x05h-Testing-Platform-Interaction.md#static-analysis-1>`__
 
-        :return: Intent filter uri's
-        :rtype: dict
+        Returns
+        -------
+        list
+            Intent filter uri's
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_intent_uri_filter()
@@ -479,15 +561,19 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             return []
 
     @_logger
-    def manifest_uses_feature(self):
+    def manifest_uses_feature(self) -> list:
         """
         Returns a list of all uses-feature node. uses-feature is normally used 
         to elaborate on permissions. 
         | `Reference <https://developer.android.com/guide/topics/manifest/uses-feature-element>`__
 
-        :return: Attributes of found uses-feature nodes
-        :rtype: list
+        Returns
+        -------
+        list
+            Attributes of found uses-feature nodes
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_uses_feature()
@@ -502,14 +588,18 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             return []
 
     @_logger
-    def manifest_allow_backup(self):
+    def manifest_allow_backup(self) -> bool:
         """
         Returns true if the allow backup flag is set for the APK
         | `Reference <https://developer.android.com/guide/topics/manifest/application-element>`__
 
-        :return: true or false
-        :rtype: list
+        Returns
+        -------
+        bool
+            Returns true if backup is allowed. Else False
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_allow_backup()
@@ -518,22 +608,27 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             p = self.manifest_application_node()['allowBackup']
             self._manifest_analysis['allow_backup'] = [p]
             self.log_debug('')
-            return [p]
+            if p == 'true':
+                return True
         except KeyError:
             self.log_error('Key not found')
-            return []
+            return False
 
     @_logger
-    def manifest_debuggable(self):
+    def manifest_debuggable(self) -> bool:
         """
         Returns true if the debuggable flag is set for the APK
         | `Reference <https://developer.android.com/guide/topics/manifest/application-element>`__
         | `Reference <https://wiki.sei.cmu.edu/confluence/display/android/DRD10-X.+Do+not+release+apps+that+are+debuggable>`__
         | `Reference <https://github.com/OWASP/owasp-mstg/blob/master/Document/0x05i-Testing-Code-Quality-and-Build-Settings.md#determining-whether-the-app-is-debuggable>`__
 
-        :return: true or false
-        :rtype: list
+        Returns
+        -------
+        bool
+            Returns True if debuggable, else False
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_debuggable()
@@ -542,10 +637,11 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             p = self.manifest_application_node()['debuggable']
             self._manifest_analysis['debuggable'] = [p]
             self.log_debug('')
-            return [p]
+            if p == 'true':
+                return True
         except KeyError:
             self.log_error('Key not found')
-            return []
+            return False
 
     @_logger
     def manifest_application_node(self) -> dict:
@@ -553,9 +649,13 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
         Returns a dictionary of all values that are found in the application node
         | `Reference <https://developer.android.com/guide/topics/manifest/application-element>`__
 
-        :return: dictionary of matches
-        :rtype: dict
+        Returns
+        -------
+        dict
+            A dictionary of the application node from the manifest
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_application_node()
@@ -567,17 +667,21 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             return p
         except KeyError:
             self.log_error('Key not found')
-            return []
+            return None
 
     @_logger
-    def manifest_meta_data(self):
+    def manifest_meta_data(self) -> list:
         """
         Returns the contents inside meta-data nodes
         | `Reference <https://developer.android.com/guide/topics/manifest/meta-data-element>`__
 
-        :return: meta-data
-        :rtype: list
+        Returns
+        -------
+        list
+            a list of meta-data nodes
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_meta_data()
@@ -596,15 +700,19 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             return []
 
     @_logger
-    def manifest_activities(self):
+    def manifest_activities(self) -> list:
         """
         Returns a list of all activities and all related attributes
         | `Reference <https://developer.android.com/guide/topics/manifest/activity-element>`__
         | `Reference <https://developer.android.com/guide/topics/manifest/intent-filter-element>`__
 
-        :return: activities
-        :rtype: list
+        Returns
+        -------
+        list
+            An array of all the activities from the manifest
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_activities()
@@ -612,17 +720,23 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
         a = self._parse_manifest_xml()['application']['activity']
         self._manifest_analysis['activities'] = a
         self.log_debug('')
+        if not isinstance(a, list):
+            return [a]
         return a
 
     @_logger
-    def manifest_activity_alias(self):
+    def manifest_activity_alias(self) -> list:
         """
         Returns a list of all activity-alias and all related attributes
         | `Reference <https://developer.android.com/guide/topics/manifest/activity-alias-element>`__
 
-        :return: activitiy aliases
-        :rtype: list
+        Returns
+        -------
+        list
+            A list of aliased activies
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_activity_alias()
@@ -637,14 +751,18 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             return []
 
     @_logger
-    def manifest_receivers(self):
+    def manifest_receivers(self) -> list:
         """
         Returns a list of all receivers and all related attributes
         | `Reference <https://developer.android.com/guide/topics/manifest/receiver-element>`__
 
-        :return: receivers
-        :rtype: list
+        Returns
+        -------
+        list
+            a list receivers registered in the manifest
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_receivers()
@@ -659,14 +777,18 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             return []
 
     @_logger
-    def manifest_services(self):
+    def manifest_services(self) -> list:
         """
         Returns a list of all services and all related attributes
         | `Reference <https://developer.android.com/guide/topics/manifest/service-element>`__
 
-        :return: services
-        :rtype: list
+        Returns
+        -------
+        list
+            a list of registered services in the manifest
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_services()
@@ -681,15 +803,19 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             return []
 
     @_logger
-    def manifest_providers(self):
+    def manifest_providers(self) -> list:
         """
         Returns a list of all providers and all related attributes
         | `Reference <https://developer.android.com/guide/topics/manifest/provider-element>`__
         | `Reference <https://developer.android.com/guide/topics/manifest/path-permission-element>`__
 
-        :return: providers
-        :rtype: list
+        Returns
+        -------
+        list
+            a list of registered providers in the manifest
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_providers()
@@ -705,15 +831,19 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             return []
 
     @_logger
-    def manifest_exported_providers(self):
+    def manifest_exported_providers(self) -> list:
         """
         Returns a list of all providers and all related attributes
         | `Reference <https://developer.android.com/guide/topics/manifest/provider-element>`__
         | `Reference OWASP <https://github.com/OWASP/owasp-mstg/blob/master/Document/0x05d-Testing-Data-Storage.md#inspect-the-android-manifest>`__
 
-        :return: providers which are exported
-        :rtype: list
+        Returns
+        -------
+        list
+            a list of exported provider nodes from the manifest
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/apk)
         >>> a.manifest_exported_providers()
@@ -728,13 +858,17 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             return []
 
     @_logger
-    def manifest_secrets(self):
+    def manifest_secrets(self) -> list:
         """
         Find all secrets hidden in AndroidManifest.xml like tokens, keys etc.
 
-        :return: name, line number and match
-        :rtype: dict
+        Returns
+        -------
+        list
+            a list of common secrets hardcoded in the manifest.
 
+        Examples
+        --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAnroid('/path/to/apk')
         >>> a.manifest_secrets()
