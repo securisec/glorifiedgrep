@@ -39,15 +39,6 @@ class _AndroidCore():
         >>> # overriden using output_dir='some/path'
         >>> a = GlorifiedAndroid('/path/to/apk', output_dir='/out/dir')
 
-        To add new values to the ignore list, do the following:
-
-        >>> a.FILTER = ['list', 'to', 'ignore']
-
-        To show only matching FILTER only, use:
-
-        >>> a.FILTER = ['list', 'to', 'match']
-        >>> a.match_only = True
-
         Typically, the prefix for the file path is removed when processing 
         filepaths in the various code analysis classes. This can be adjusted using 
 
@@ -83,7 +74,9 @@ class _AndroidCore():
         self._other_analysis = self._android_findings['other_analysis']
         #: Logging debug method binder
         self.log_debug = logging.debug
-        #: Logging debug method binder
+        #: Logging warning method binder
+        self.log_warning = logging.warning
+        #: Logging error method binder
         self.log_error = logging.error
         #: Logging info method binder
         self.log_info = logging.info

@@ -5,7 +5,7 @@ from glorifiedgrep import GlorifiedAndroid
 test_dir = Path()
 test_apk = test_dir / 'tests' / 'test.apk'
 
-g = GlorifiedAndroid(test_apk.resolve())
+g = GlorifiedAndroid(test_apk.resolve(), output_dir='/tmp/ggtest')
 
 
 def test_cert_public_key():

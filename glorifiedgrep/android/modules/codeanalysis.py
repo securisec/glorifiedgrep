@@ -3080,3 +3080,61 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         self._code_analysis['apache_post'] = match
         self.log_debug('')
         return GreppedOut(match)
+
+    @_logger
+    def code_package_installed(self, show_code: bool = False) -> GreppedOut:
+        """
+        Detects the usage of the getInstalledPackages method from the PackageManager class. 
+        | `Reference <https://developer.android.com/reference/kotlin/android/content/pm/PackageManager?hl=en#getinstalledpackages>`__ 
+
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
+
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
+        >>> a = GlorifiedAndroid('/path/to/apk')
+        >>> a.code_apache_http_post_request()
+        """
+        regex = r'\.getInstalledPackages\(.*\)'
+        match = self._run_rg_and_process(regex=regex, code=show_code)
+        self._code_analysis['installed_packages'] = match
+        self.log_debug('')
+        return GreppedOut(match)
+
+    @_logger
+    def code_system_file_exists(self, show_code: bool = False) -> GreppedOut:
+        """
+        Detects if the exists method from the File class is being called. 
+        This method is typically used to check if the path in the class 
+        constructor exists in the system.  
+        | `Reference <https://developer.android.com/reference/kotlin/java/io/File?hl=en#exists>`__ 
+
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
+
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
+        >>> a = GlorifiedAndroid('/path/to/apk')
+        >>> a.code_apache_http_post_request()
+        """
+        regex = r'new File.+\.exists\(\)'
+        match = self._run_rg_and_process(regex=regex, code=show_code)
+        self._code_analysis['file_exists'] = match
+        self.log_debug('')
+        return GreppedOut(match)

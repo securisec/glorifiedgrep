@@ -84,7 +84,7 @@ class _FileAnalysys(_AndroidCore):
         )]
 
     @_logger
-    def file_get_file_types(self, describe: bool = False) -> dict:
+    def file_get_file_types(self, describe: bool = False, exclude: list = ['']) -> dict:
         """
         Returns the magic values of all files found after unzipping the APK. 
         Keys are sorted by mime values of the files
@@ -93,6 +93,8 @@ class _FileAnalysys(_AndroidCore):
         ----------
         describe : bool, optional
             Get full description of file. Defaults to False
+        exclude : list, optional
+            Exclude the file extensions in an array. Defaults to None
 
         Returns
         -------
@@ -103,7 +105,7 @@ class _FileAnalysys(_AndroidCore):
         --------
         >>> from glorifiedgrep import GlorifiedAndroid
         >>> a = GlorifiedAndroid('/path/to/file')
-        >>> a.file_get_file_types()
+        >>> a.file_get_file_types(exclude=['xml', 'png'])
         """
         # ! WINDOWS has path problems here
         # TODO change this with Pathlib for windows support
@@ -127,6 +129,13 @@ class _FileAnalysys(_AndroidCore):
                     found[key].append(p)
         self._file_analysis['file_types'] = found
         self.log_debug('')
+        if exclude[0] != '':
+            if not isinstance(exclude, list):
+                raise TypeError('Exclude is an array of file extensions')
+            if describe:
+                return {k: list(x for x in found[k] if not any(s in x['file'] for s in exclude)) for k in found }
+            else:
+                return {k: list(x for x in found[k] if not any(s in x for s in exclude)) for k in found }
         return dict(found)
 
     @_logger

@@ -5,7 +5,7 @@ from glorifiedgrep import GlorifiedAndroid
 test_dir = Path()
 test_apk = test_dir / 'tests' / 'test.apk'
 
-g = GlorifiedAndroid(test_apk.resolve())
+g = GlorifiedAndroid(test_apk.resolve(), output_dir='/tmp/ggtest')
 
 
 def test_code_accessibility_service():
@@ -422,3 +422,11 @@ def test_code_xor_encryption():
 
 def test_code_xpath():
     assert g.code_xpath().count == 0
+
+
+def test_code_package_installed():
+    assert g.code_package_installed().count == 0
+
+
+def test_code_system_file_exists():
+    assert g.code_system_file_exists().count == 2

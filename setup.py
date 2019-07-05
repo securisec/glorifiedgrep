@@ -21,7 +21,24 @@ setup(
     version=__version__,
     author=__author__,
     packages=find_packages(exclude=('tests')),
-    install_requires=read_requirements(),
+    install_requires=[
+        'ripgrepy',
+        'asn1crypto==0.24.0',
+        'cffi==1.11.5',
+        'cryptography==2.3.1',
+        'idna==2.7',
+        'javaobj-py3==0.2.4',
+        'pyasn1-modules==0.2.2',
+        'pyasn1==0.4.4',
+        'pycparser==2.18',
+        'pycryptodome==3.6.6',
+        'pyjks==18.0.0',
+        'pyopenssl==18.0.0',
+        'python-magic',
+        'six==1.11.0',
+        'twofish==0.3.0',
+        'xmltodict==0.11.0',
+    ],
     classifiers=[
         "Programming Language :: Python :: 3.7"
     ]

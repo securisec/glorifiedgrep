@@ -4,6 +4,8 @@
 [![Build Status](https://travis-ci.com/securisec/glorifiedgrep.svg?token=8GQfGnTK7S1NU7bKCqeR&branch=master)](https://travis-ci.com/securisec/glorifiedgrep)
 [![Read the Docs](https://img.shields.io/readthedocs/glorifiedgrep.svg)](https://glorifiedgrep.readthedocs.io/en/latest/)
 
+# [DOCS](https://glorifiedgrep.readthedocs.io/en/latest/)
+
 # Glorified Grep
 
 `glorifiedgrep` is exactly what it sounds like... glorified grep. 
@@ -43,6 +45,8 @@ git clone https://github.com/securisec/glorifiedgrep.git
 cd glorifiedgrep
 pip install .
 ```
+#### OSX
+`libmagic` is required. Easiest way to install it is `brew install libmagic`
 
 ## Coverage
 ### Android

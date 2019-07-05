@@ -2,6 +2,15 @@ import logging
 
 
 class GreppedOut:
+    """
+    Thre GreppedOut class is generally used to capture the output 
+    of code analysis methods and offers various helper attributes 
+    and properties.
+    
+    Returns
+    -------
+    object
+    """
     def __init__(self, data):
         self.out = data
 
@@ -18,7 +27,17 @@ class GreppedOut:
         """
         return len(self.out)
 
-    def in_file(self, path: str, key: str = None) -> 'GreppedOut':
+    def in_file(self, path: str) -> 'GreppedOut':
+        """
+        Only include matches from the files which partially 
+        matches the path argument. This method can be chained 
+        for multiple file paths.
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
+        """
         if isinstance(self.out, list):
             self.out = [x for x in self.out if path in x['file']]
             return self
@@ -27,6 +46,16 @@ class GreppedOut:
             return False
 
     def exclude_file(self, path: str) -> 'GreppedOut':
+        """
+        Exclude matches from the files which partially 
+        matches the path argument. This method can be chained 
+        for multiple file paths.
+        
+        Returns
+        -------
+        GreppedOut : object
+            GreppedOut object
+        """
         if isinstance(self.out, list):
             self.out = [x for x in self.out if path not in x['file']]
             return self

@@ -86,7 +86,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return p
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return None
 
     @_logger
@@ -137,7 +137,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return int(p)
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return None
 
     @_logger
@@ -162,7 +162,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return p
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return None
 
     @_logger
@@ -187,7 +187,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return int(p)
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return None
 
     @_logger
@@ -213,7 +213,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return int(p)
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return None
 
     @_logger
@@ -240,7 +240,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return int(p)
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return None
 
     @_logger
@@ -291,7 +291,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return p
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return None
 
     @_logger
@@ -318,7 +318,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return p
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return None
 
     @_logger
@@ -350,7 +350,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return a
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return []
 
     @_logger
@@ -381,7 +381,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return a
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return []
 
     @_logger
@@ -403,7 +403,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             permissions = [x['name'] for x in self.manifest_uses_permission()]
             return list(filter(lambda x: 'BIND' in x, permissions))
         except:
-            self.log_error('Exception happened')
+            self.log_warning('Exception happened')
 
     @_logger
     def manifest_custom_permission(self) -> list:
@@ -435,9 +435,9 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
                 if not p1[i]['name'].startswith('android.permission'):
                     final.append(p1[i]['name'])
             except KeyError:
-                self.log_error('Key not found')
+                self.log_warning('Key not found')
             except TypeError:
-                self.log_error('Key not found')
+                self.log_warning('Key not found')
         self._manifest_analysis['custom_permission'] = final
         self.log_debug('')
         return final
@@ -474,10 +474,10 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
                 if any(sig in p for sig in self._PERMISSION_SIGNATURE):
                     final.append(p)
             except KeyError:
-                self.log_error('Key not found')
+                self.log_warning('Key not found')
                 continue
             except TypeError:
-                self.log_error('Key not found')
+                self.log_warning('Key not found')
                 continue
         self._manifest_analysis['signature_permission'] = final
         self.log_debug('')
@@ -515,10 +515,10 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
                 if any(sig in p for sig in self._PERMISSION_DANGERIOUS):
                     final.append(p)
             except KeyError:
-                self.log_error('Key not found')
+                self.log_warning('Key not found')
                 continue
             except TypeError:
-                self.log_error('Key not found')
+                self.log_warning('Key not found')
                 continue
         self._manifest_analysis['dangerous_permission'] = final
         self.log_debug('')
@@ -557,7 +557,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return final
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return []
 
     @_logger
@@ -584,7 +584,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return a
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return []
 
     @_logger
@@ -611,7 +611,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             if p == 'true':
                 return True
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return False
 
     @_logger
@@ -640,7 +640,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             if p == 'true':
                 return True
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return False
 
     @_logger
@@ -666,7 +666,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return p
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return None
 
     @_logger
@@ -696,7 +696,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return a
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return []
 
     @_logger
@@ -747,7 +747,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return a
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return []
 
     @_logger
@@ -773,7 +773,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return a
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return []
 
     @_logger
@@ -799,7 +799,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
             self.log_debug('')
             return a
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return []
 
     @_logger
@@ -827,7 +827,7 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
                 self.log_debug('')
                 return a
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return []
 
     @_logger
@@ -851,10 +851,10 @@ class _ManifestAnalysis(_AndroidCore, _AppAnalysisConstants):
         try:
             return [x for x in self.manifest_providers() if x['exported'] == 'true']
         except KeyError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return []
         except TypeError:
-            self.log_error('Key not found')
+            self.log_warning('Key not found')
             return []
 
     @_logger

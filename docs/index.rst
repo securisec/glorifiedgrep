@@ -18,6 +18,7 @@ Welcome to glorifiedgrep's documentation!
    android/otheranalysis
    android/malware
    android/utils
+   out.rst
 
 
 
