@@ -36,7 +36,7 @@ def test_other_file_urlhandler():
 
 
 def test_other_find_trackers_ads():
-    assert g.other_find_trackers_ads().count == 0
+    assert len(g.other_find_trackers_ads()) == 0
 
 
 def test_other_github_token():

@@ -86,7 +86,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return GreppedOut(match)
 
     @_logger
-    def other_ip_address(self, show_code=False):
+    def other_ip_address(self, show_code=False) -> GreppedOut:
         """
         Find IP addresses in the decompiled source
 
@@ -114,7 +114,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return GreppedOut(match)
 
     @_logger
-    def other_http_urls(self, show_code=False):
+    def other_http_urls(self, show_code=False) -> GreppedOut:
         """
         Find HTTP urls in the decompiled source
 
@@ -142,7 +142,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return GreppedOut(match)
 
     @_logger
-    def other_all_urls(self, show_code=False):
+    def other_all_urls(self, show_code=False) -> GreppedOut:
         """
         Find all urls in the decompiled source
 
@@ -170,7 +170,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return GreppedOut(match)
 
     @_logger
-    def other_file_urlhandler(self, show_code=False):
+    def other_file_urlhandler(self, show_code=False) -> GreppedOut:
         """
         Find all ``file://`` urls in the decompiled source
 
@@ -198,7 +198,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return GreppedOut(match)
 
     @_logger
-    def other_content_urlhandler(self, show_code=False):
+    def other_content_urlhandler(self, show_code=False) -> GreppedOut:
         """
         Find all ``content://`` urls in the decompiled source
 
@@ -226,7 +226,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return GreppedOut(match)
 
     @_logger
-    def other_websocket_urlhandler(self, show_code=False):
+    def other_websocket_urlhandler(self, show_code=False) -> GreppedOut:
         """
         Find all ``ws://`` or ``wss://`` urls in the decompiled source
 
@@ -254,7 +254,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return GreppedOut(match)
 
     @_logger
-    def other_secret_keys(self, show_code=False):
+    def other_secret_keys(self, show_code=False) -> GreppedOut:
         """
         Find all urls in the decompiled source
 
@@ -282,7 +282,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return GreppedOut(match)
 
     @_logger
-    def other_aws_keys(self, show_code=False):
+    def other_aws_keys(self, show_code=False) -> GreppedOut:
         """
         Find all AWS keys in the decompiled source
 
@@ -310,7 +310,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return GreppedOut(match)
 
     @_logger
-    def other_github_token(self, show_code=False):
+    def other_github_token(self, show_code=False) -> GreppedOut:
         """
         Find all Github tokens in the decompiled source
 
@@ -338,7 +338,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return GreppedOut(match)
 
     @_logger
-    def other_password_in_url(self, show_code=False):
+    def other_password_in_url(self, show_code=False) -> GreppedOut:
         """
         Find all passwords in urls. Usually used for basic authentication
 
@@ -366,7 +366,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return GreppedOut(match)
 
     @_logger
-    def other_google_ads_import(self, show_code=False):
+    def other_google_ads_import(self, show_code=False) -> GreppedOut:
         """
         Find imports relevant to Google ads
 
@@ -394,7 +394,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         return GreppedOut(match)
 
     @_logger
-    def other_find_trackers_ads(self):
+    def other_find_trackers_ads(self) -> list:
         """
         Find trackers included in the app. Currently it looks for 
         135 trackers.
@@ -406,8 +406,8 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
-            GreppedOut object
+        list
+            List of matched trackers
 
         Examples
         --------
@@ -426,10 +426,10 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
                 match.append(k)
         self._other_analysis['trackers'] = match
         self.log_debug('')
-        return GreppedOut(match)
+        return match
 
     @_logger
-    def other_ad_networks(self, show_code=False) -> dict:
+    def other_ad_networks(self, show_code=False) -> GreppedOut:
         """
         Show imports of the popular android ad networks. 
         | `Reference <https://github.com/lioulei1317/Android-Demo/blob/master/javaapk.com-360Satety/src/com/anjoyo/anjoyosafety/util/AdManagerUtil.java>`__
