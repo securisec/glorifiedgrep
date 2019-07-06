@@ -185,7 +185,7 @@ class _AndroidCore():
         # path to CERT.RSA
 
         #: Use this to make dirpath in output shorter. Is used in an re.sub function. Default is self._outputdir+/
-        self.dir_prefix = f'{self._output_dir}/'
+        self.dir_prefix = ''#f'{self._output_dir}/'
 
         self.log_debug(f'{self.__class__}')
 

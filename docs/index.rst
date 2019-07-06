@@ -20,6 +20,16 @@ Welcome to glorifiedgrep's documentation!
    android/utils
    out.rst
 
+Resources
+=========
+
+- `Exodus privacy <https://reports.exodus-privacy.eu.org>`__
+- `Android SDK <https://developer.android.com/reference/android>`__
+- `OWASP MSTG <https://github.com/OWASP/owasp-mstg>`__
+- `CMU Coding standarsd <https://wiki.sei.cmu.edu/confluence/pages/viewpage.action?pageId=88487375>`__
+- `Qark <https://github.com/linkedin/qark>`__
+- `MobSF <https://github.com/MobSF/Mobile-Security-Framework-MobSF>`__
+- `JSSEC Secure Android Coding <http://www.jssec.org/dl/android_securecoding_en.pdf>`__
 
 
 Indices and tables

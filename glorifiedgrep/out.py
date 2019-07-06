@@ -63,5 +63,29 @@ class GreppedOut:
             logging.warning('Method output is not an array')
             return False
 
+    @property
+    def matches(self) -> list:
+        """
+        Get only the code matches in an array
+        
+        Returns
+        -------
+        list
+            List of matches
+        """
+        return [x['match'] for x in self.out]
+
+    @property
+    def files(self) -> set:
+        """
+        Get a set of file names where matches were found
+        
+        Returns
+        -------
+        set
+            Set of filenames
+        """
+        return set([x['file'] for x in self.out])
+
     def __repr__(self):
         return repr(self.out)
