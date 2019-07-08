@@ -44,7 +44,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -75,7 +75,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -106,7 +106,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -138,7 +138,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -170,7 +170,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -201,7 +201,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -234,7 +234,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -267,7 +267,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -300,7 +300,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -333,7 +333,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -366,7 +366,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -397,7 +397,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -429,7 +429,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -461,7 +461,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -492,7 +492,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -523,7 +523,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -555,7 +555,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -586,7 +586,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -617,7 +617,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -648,7 +648,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -679,7 +679,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -710,7 +710,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -742,7 +742,7 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples

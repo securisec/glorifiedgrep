@@ -35,7 +35,7 @@ class GreppedOut:
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
         """
         if isinstance(self.out, list):
@@ -53,7 +53,7 @@ class GreppedOut:
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
         """
         if isinstance(self.out, list):

@@ -295,6 +295,7 @@ class _Trackers:
 	}
 
 	_TRACKERS = {
+        # Updated 7/5/2019
         'ADLIB': 'com.mocoplex.adlib.',
 		'ATInternet': 'com.atinternet.',
 		'AccountKit': 'com.facebook.accountkit',

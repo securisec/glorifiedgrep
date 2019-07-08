@@ -35,6 +35,7 @@ author = 'Hapsida @securisec'
 # ones.
 extensions = [
     'sphinx.ext.napoleon',
+    'sphinx.ext.autodoc'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

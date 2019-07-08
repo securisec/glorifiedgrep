@@ -349,7 +349,7 @@ class NativeDEXAnalysis():
 
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -605,3 +605,29 @@ class Utils(_AndroidCore):
             self._core.log_debug('')
             return dict(xmltodict.parse(
                 f.read(), process_namespaces=True, attr_prefix=''))
+
+    @_logger
+    def jks_password_bruteforce(self, jks_file: str, word_list: str) -> str:
+        """
+        Bruteforce the password for a JKS keystore
+        
+        Parameters
+        ----------
+        jks_file : str
+            Path to JKS keystore
+        word_list : str
+            Path to wordlist
+        
+        Returns
+        -------
+        str
+            Valid password if found. Else False
+        """
+        with open(word_list, 'r') as f:
+            for word in f:
+                try:
+                    _ = jks.KeyStore.load(jks_file, word.strip())
+                    return word
+                except jks.KeystoreSignatureException:
+                    continue
+            return False

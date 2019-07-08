@@ -36,7 +36,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -69,7 +69,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -97,7 +97,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -125,7 +125,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -153,7 +153,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -181,7 +181,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -209,7 +209,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -237,7 +237,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -265,7 +265,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -293,7 +293,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -321,7 +321,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -349,7 +349,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -377,7 +377,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -442,7 +442,7 @@ class _OtherAnalysis(_AndroidCore, _GrepConstants, _Trackers):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples

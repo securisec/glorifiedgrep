@@ -78,7 +78,7 @@ class React(_AndroidCore):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -113,7 +113,7 @@ class React(_AndroidCore):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -148,7 +148,7 @@ class React(_AndroidCore):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -184,7 +184,7 @@ class React(_AndroidCore):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
@@ -220,7 +220,7 @@ class React(_AndroidCore):
         
         Returns
         -------
-        GreppedOut : object
+        GreppedOut
             GreppedOut object
 
         Examples
