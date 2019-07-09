@@ -84,7 +84,7 @@ class _FileAnalysys(_AndroidCore):
         )]
 
     @_logger
-    def file_get_file_types(self, describe: bool = False, exclude: list = ['']) -> dict:
+    def file_get_file_types(self, describe: bool=False, exclude: list = ['']) -> dict:
         """
         Returns the magic values of all files found after unzipping the APK. 
         Keys are sorted by mime values of the files

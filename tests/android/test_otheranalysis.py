@@ -12,7 +12,7 @@ def test_other_ad_networks():
 
 
 def test_other_all_urls():
-    assert g.other_all_urls().count == 1
+    assert g.other_all_urls().count == 3
 
 
 def test_other_aws_keys():
@@ -48,7 +48,7 @@ def test_other_google_ads_import():
 
 
 def test_other_http_urls():
-    assert g.other_http_urls().count == 1
+    assert g.other_http_urls().count == 2
 
 
 def test_other_ip_address():

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from ripgrepy import Ripgrepy
 from .androidcore import _AndroidCore
 from ...out import GreppedOut
 from ...logger import _logger
@@ -25,7 +26,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return self._android_findings['code_analysis']
 
     @_logger
-    def code_command_exec(self, show_code: bool = False) -> GreppedOut:
+    def code_command_exec(self, show_code: bool=False) -> GreppedOut:
         """
         Find all commands executed in shell using /bin/sh or .exec() in the decompiled source
 
@@ -52,7 +53,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_create_tempfile(self, show_code: bool = False) -> GreppedOut:
+    def code_create_tempfile(self, show_code: bool=False) -> GreppedOut:
         """
         Find all code which is using Java createTempFile 
         | `Reference <https://developer.android.com/reference/java/io/File>`__
@@ -80,7 +81,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_file_observer(self, show_code: bool = False) -> GreppedOut:
+    def code_file_observer(self, show_code: bool=False) -> GreppedOut:
         """
         Find all instances of the FileObserver class being used. This 
         class is used to check for file access or change and fire and event.
@@ -109,7 +110,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_dynamic_dexclassloader(self, show_code: bool = False) -> GreppedOut:
+    def code_dynamic_dexclassloader(self, show_code: bool=False) -> GreppedOut:
         """
         Find all instances of DexClassLoader in the decompiled source. 
         This can be used to execute code not installed as part of an application. 
@@ -138,7 +139,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_dynamic_other_classloader(self, show_code: bool = False) -> GreppedOut:
+    def code_dynamic_other_classloader(self, show_code: bool=False) -> GreppedOut:
         """
         Find all instances of BaseDexClassLoader, SecureClassLoader, 
         DelegateLastClassLoader, DexClassLoader, InMemoryDexClassLoader, PathClassLoader, 
@@ -169,7 +170,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_cipher_instance(self, show_code: bool = False) -> GreppedOut:
+    def code_cipher_instance(self, show_code: bool=False) -> GreppedOut:
         """
         Find all instances of Cipher.getInstance in the decompiled source. 
         class provides the functionality of a cryptographic cipher for encryption and decryption. 
@@ -200,7 +201,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_key_generator(self, show_code: bool = False) -> GreppedOut:
+    def code_key_generator(self, show_code: bool=False) -> GreppedOut:
         """
         Find all instances of KeyGenerator and its methods in the decompiled source. 
         This class provides the functionality of a secret (symmetric) key generator
@@ -230,7 +231,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_webview_database(self, show_code: bool = False) -> GreppedOut:
+    def code_webview_database(self, show_code: bool=False) -> GreppedOut:
         """
         This allows developers to determine whether any WebView used in the application has 
         stored any of the following types of browsing data and to clear any such stored data 
@@ -260,7 +261,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_webview_js_enabled(self, show_code: bool = False) -> GreppedOut:
+    def code_webview_js_enabled(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for any webview implementations where JavaScript is enabled.
         | `Reference <https://developer.android.com/reference/android/webkit/WebSettings>`__
@@ -288,7 +289,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_webview_debug_enabled(self, show_code: bool = False) -> GreppedOut:
+    def code_webview_debug_enabled(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks to see if debug is enabled in webview.
         | `Reference <https://developer.android.com/reference/android/webkit/WebView.html#setWebContentsDebuggingEnabled(boolean)>`__
@@ -316,7 +317,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_webview_file_access(self, show_code: bool = False) -> GreppedOut:
+    def code_webview_file_access(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for any webview implementations where the webview 
         has file access.
@@ -345,7 +346,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_webview_content_access(self, show_code: bool = False) -> GreppedOut:
+    def code_webview_content_access(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for any webview implementations where the webview 
         has can access data from a content provider.
@@ -375,7 +376,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_sql_select_raw_query(self, show_code: bool = False) -> GreppedOut:
+    def code_sql_select_raw_query(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for any SELECT queries in the decompiled code.
 
@@ -403,7 +404,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_sql_query_other(self, show_code: bool = False) -> GreppedOut:
+    def code_sql_query_other(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for any other SQL queries like INSERT, DROP etc 
         in the decompiled code.
@@ -432,7 +433,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_sqlite_operations(self, show_code: bool = False) -> GreppedOut:
+    def code_sqlite_operations(self, show_code: bool=False) -> GreppedOut:
         """
         This getWritableDatabase and the getReadableDatabase methods db 
         instances for sqlite opertations. These calls can be followed to 
@@ -462,7 +463,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_sqlcipher_password(self, show_code: bool = False) -> GreppedOut:
+    def code_sqlcipher_password(self, show_code: bool=False) -> GreppedOut:
         """
         This getWritableDatabase and the getReadableDatabase methods from 
         sqlcipher classes (3rd party) takes the db password as their argument. 
@@ -491,7 +492,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_sql_injection_points(self, show_code: bool = False) -> GreppedOut:
+    def code_sql_injection_points(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for execquery. If user input is used in this query, 
         this will lead to SQL injection.
@@ -524,7 +525,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_get_environment_var(self, show_code: bool = False) -> GreppedOut:
+    def code_get_environment_var(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for usage of getenv in the decompiled code.
         | `Reference <https://github.com/OWASP/owasp-mstg/blob/master/Document/0x05j-Testing-Resiliency-Against-Reverse-Engineering.md#common-root-detection-methods>`__
@@ -552,7 +553,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_debugger_check(self, show_code: bool = False) -> GreppedOut:
+    def code_debugger_check(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for usage of isDebuggerConnected in the decompiled code.
         | `Reference <https://github.com/OWASP/owasp-mstg/blob/master/Document/0x05j-Testing-Resiliency-Against-Reverse-Engineering.md#isdebuggerconnected>`__
@@ -580,7 +581,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_debuggable_check(self, show_code: bool = False) -> GreppedOut:
+    def code_debuggable_check(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for code what will check if the app is 
         debuggable at run time. 
@@ -609,7 +610,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_device_serial_number(self, show_code: bool = False) -> GreppedOut:
+    def code_device_serial_number(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for Build.SERIAL which can sometimes be used 
         in addition with other things to build unique tokens.
@@ -638,7 +639,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_sql_java_implementation(self, show_code: bool = False) -> GreppedOut:
+    def code_sql_java_implementation(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for any other SQL queries that are implemented 
         in Java. This searches for .query, .insert, .update and .delete methods.
@@ -678,7 +679,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_stub_packed(self, show_code: bool = False) -> GreppedOut:
+    def code_stub_packed(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for indication that the application is packed.
 
@@ -708,7 +709,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_api_builder(self, show_code: bool = False) -> GreppedOut:
+    def code_api_builder(self, show_code: bool=False) -> GreppedOut:
         """
         This method makes a best effort to detect api string builders 
         within the decompiled Java code.
@@ -736,7 +737,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_shared_preferences(self, show_code: bool = False) -> GreppedOut:
+    def code_shared_preferences(self, show_code: bool=False) -> GreppedOut:
         """
         This method discovers SharePreference and getSharePreference from the 
         decompiled code. Interface for accessing and modifying preference data returned 
@@ -768,7 +769,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_file_read(self, show_code: bool = False) -> GreppedOut:
+    def code_file_read(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for FileInputStream within the decompiled Java code 
         which would indicate which files the app is reading.
@@ -797,7 +798,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_file_write(self, show_code: bool = False) -> GreppedOut:
+    def code_file_write(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for getByes() method which can indicate files 
         being written by the app.
@@ -826,7 +827,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_logging(self, show_code: bool = False) -> GreppedOut:
+    def code_logging(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for the usage of Log class from Android SDK.
         | `Reference <https://developer.android.com/reference/android/util/Log>`__
@@ -854,7 +855,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_xor_encryption(self, show_code: bool = False) -> GreppedOut:
+    def code_xor_encryption(self, show_code: bool=False) -> GreppedOut:
         """
         This method looks for XOR encryption operation within the 
         decompiled code.
@@ -882,7 +883,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_load_native_library(self, show_code: bool = False) -> GreppedOut:
+    def code_load_native_library(self, show_code: bool=False) -> GreppedOut:
         """
         This method identifies where native libaries and loaded in the 
         decompiled code.
@@ -911,7 +912,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_intent_parameters(self, show_code: bool = False) -> GreppedOut:
+    def code_intent_parameters(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify usage of the getStringExtra which is 
         used to create parameters for intents.
@@ -941,7 +942,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_tcp_sockets(self, show_code: bool = False) -> GreppedOut:
+    def code_tcp_sockets(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify TCP sockets being opened by the 
         decompiled code.
@@ -970,7 +971,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_udp_sockets(self, show_code: bool = False) -> GreppedOut:
+    def code_udp_sockets(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify UDP sockets being opened by the 
         decompiled code.
@@ -999,7 +1000,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_create_sockets(self, show_code: bool = False) -> GreppedOut:
+    def code_create_sockets(self, show_code: bool=False) -> GreppedOut:
         """
         An InetSocketAddress is a special SocketAddress designed to represent 
         the standard TCP Protocol address, so it thus has methods to set/query 
@@ -1031,7 +1032,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_system_service(self, show_code: bool = False) -> GreppedOut:
+    def code_system_service(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify systemservices being called.
         | `Reference Android SDK <https://developer.android.com/reference/android/app/Activity#getSystemService(java.lang.String)>`__
@@ -1059,7 +1060,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_make_http_request(self, show_code: bool = False) -> GreppedOut:
+    def code_make_http_request(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify when a HTTP connection is being made 
         in the decompiled code. 
@@ -1088,7 +1089,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_http_request_methods(self, show_code: bool = False) -> GreppedOut:
+    def code_http_request_methods(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify what HTTP request methods are being used. 
         | `Reference Android SDK <https://developer.android.com/reference/java/net/HttpURLConnection.html#setRequestMethod(java.lang.String)>`__
@@ -1116,7 +1117,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_make_https_request(self, show_code: bool = False) -> GreppedOut:
+    def code_make_https_request(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify when a HTTPS connection is being made 
         in the decompiled code. 
@@ -1145,7 +1146,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_broadcast_messages(self, show_code: bool = False) -> GreppedOut:
+    def code_broadcast_messages(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify what broadcast messages are being 
         sent in the decompiled code. 
@@ -1174,7 +1175,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_services(self, show_code: bool = False) -> GreppedOut:
+    def code_services(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify what services are being started 
         or being bound to. 
@@ -1203,7 +1204,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_webview_get_request(self, show_code: bool = False) -> GreppedOut:
+    def code_webview_get_request(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify webview get requests. 
         | `Reference Android SDK <https://developer.android.com/reference/android/webkit/WebView#loadData(java.lang.String,%20java.lang.String,%20java.lang.String)>`__
@@ -1231,7 +1232,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_webview_post_request(self, show_code: bool = False) -> GreppedOut:
+    def code_webview_post_request(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify webview get requests. 
         | `Reference Android SDK <https://developer.android.com/reference/android/webkit/WebView#postUrl(java.lang.String,%20byte[])>`__
@@ -1259,7 +1260,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_sim_information(self, show_code: bool = False) -> GreppedOut:
+    def code_sim_information(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify where device sim card information 
         is being obtained. 
@@ -1288,7 +1289,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_device_id(self, show_code: bool = False) -> GreppedOut:
+    def code_device_id(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify where device id 
         is being obtained. 
@@ -1317,7 +1318,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_base64_decode(self, show_code: bool = False) -> GreppedOut:
+    def code_base64_decode(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify base64 decode operations. 
 
@@ -1344,7 +1345,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_base64_encode(self, show_code: bool = False) -> GreppedOut:
+    def code_base64_encode(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify base64 encode operations. 
 
@@ -1371,7 +1372,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_gps_location(self, show_code: bool = False) -> GreppedOut:
+    def code_gps_location(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify where GPS locations are being used. 
 
@@ -1398,7 +1399,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_clipboard_manager(self, show_code: bool = False) -> GreppedOut:
+    def code_clipboard_manager(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify where valies are being set or 
         read from the clipboard. 
@@ -1427,7 +1428,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_password_finder(self, show_code: bool = False) -> GreppedOut:
+    def code_password_finder(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify possible passwords in the code. 
 
@@ -1454,7 +1455,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_apk_files(self, show_code: bool = False) -> GreppedOut:
+    def code_apk_files(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify if calls to apk files are hardcoded. 
 
@@ -1481,7 +1482,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_keystore_files(self, show_code: bool = False) -> GreppedOut:
+    def code_keystore_files(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify where Bouncy castle bks or jks files are being used. 
 
@@ -1508,7 +1509,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_string_constants(self, show_code: bool = False) -> GreppedOut:
+    def code_string_constants(self, show_code: bool=False) -> GreppedOut:
         """
         This method will create a dictionary of hardcoded string constants.
 
@@ -1551,7 +1552,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(final)
 
     @_logger
-    def code_byte_constants(self, show_code: bool = False) -> GreppedOut:
+    def code_byte_constants(self, show_code: bool=False) -> GreppedOut:
         """
         This method will create a dictionary of hardcoded byte constants.
 
@@ -1594,7 +1595,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(final)
 
     @_logger
-    def code_hashing_algorithms(self, show_code: bool = False) -> GreppedOut:
+    def code_hashing_algorithms(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify hashing algorithms being used. 
 
@@ -1621,7 +1622,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_weak_hashing(self, show_code: bool = False) -> GreppedOut:
+    def code_weak_hashing(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify where weak hashing algorithems such as 
         MD5, MD4, SHA1 or any RC hashes are used. 
@@ -1650,7 +1651,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_hashing_custom(self, show_code: bool = False) -> GreppedOut:
+    def code_hashing_custom(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify custom hashing algorithms being used. 
         | `Reference <http://find-sec-bugs.github.io/bugs.htm#CUSTOM_MESSAGE_DIGEST>`__
@@ -1678,7 +1679,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_ssl_connections(self, show_code: bool = False) -> GreppedOut:
+    def code_ssl_connections(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify if SSL is being used by the application. 
         | `Reference <http://find-sec-bugs.github.io/bugs.htm#SSL_CONTEXT>`__
@@ -1706,7 +1707,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_xml_processor(self, show_code: bool = False) -> GreppedOut:
+    def code_xml_processor(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify possible weaknesses in XML parsing and creation. 
         | `Reference <http://find-sec-bugs.github.io/bugs.htm#XXE_DTD_TRANSFORM_FACTORY>`__
@@ -1734,7 +1735,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_xpath(self, show_code: bool = False) -> GreppedOut:
+    def code_xpath(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify if SSL is being used by the application. 
         | `Reference <http://find-sec-bugs.github.io/bugs.htm#XXE_XPATH>`__
@@ -1762,7 +1763,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_null_cipher(self, show_code: bool = False) -> GreppedOut:
+    def code_null_cipher(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify nullciphers are being used. 
         | `Reference <http://find-sec-bugs.github.io/bugs.htm#NULL_CIPHER>`__
@@ -1790,7 +1791,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_static_iv(self, show_code: bool = False) -> GreppedOut:
+    def code_static_iv(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify static IV's. 
         | `Reference <http://find-sec-bugs.github.io/bugs.htm#STATIC_IV>`__
@@ -1818,7 +1819,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_external_file_access(self, show_code: bool = False) -> GreppedOut:
+    def code_external_file_access(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify where external files are being used. 
         | `Reference <http://find-sec-bugs.github.io/bugs.htm#ANDROID_EXTERNAL_FILE_ACCESS>`__
@@ -1846,7 +1847,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_cookies(self, show_code: bool = False) -> GreppedOut:
+    def code_cookies(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify where cookies are being set. 
         | `Reference <http://find-sec-bugs.github.io/bugs.htm#INSECURE_COOKIE>`__
@@ -1874,7 +1875,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_object_deserialization(self, show_code: bool = False) -> GreppedOut:
+    def code_object_deserialization(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify where cookies are being set. 
         | `Reference <http://find-sec-bugs.github.io/bugs.htm#OBJECT_DESERIALIZATION>`__
@@ -1902,7 +1903,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_aws_query(self, show_code: bool = False) -> GreppedOut:
+    def code_aws_query(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify where AWS queries are being made. 
         | `Reference <http://find-sec-bugs.github.io/bugs.htm#AWS_QUERY_INJECTION>`__
@@ -1930,7 +1931,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_stack_trace(self, show_code: bool = False) -> GreppedOut:
+    def code_stack_trace(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify where AWS queries are being made. 
         | `Reference <http://find-sec-bugs.github.io/bugs.htm#INFORMATION_EXPOSURE_THROUGH_AN_ERROR_MESSAGE>`__
@@ -1958,7 +1959,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_search(self, regex: str, rg_options: str = '', show_code: bool = False) -> GreppedOut:
+    def code_search(self, regex: str, rg_options: str = '', show_code: bool=False) -> GreppedOut:
         """
         Run any checks against the decompiled code. The regex should 
         be in raw string format
@@ -1985,7 +1986,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_sdcard(self, show_code: bool = False) -> GreppedOut:
+    def code_sdcard(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify strings matching sdcard usage. 
 
@@ -2012,7 +2013,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_broadcast_send(self, show_code: bool = False) -> GreppedOut:
+    def code_broadcast_send(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify code that indicates broadcast messages 
         being sent. 
@@ -2040,7 +2041,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_find_intents(self, show_code: bool = False) -> GreppedOut:
+    def code_find_intents(self, show_code: bool=False) -> GreppedOut:
         """
         This method will identify intent builders. 
 
@@ -2067,7 +2068,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_intent_filters(self, show_code: bool = False) -> GreppedOut:
+    def code_intent_filters(self, show_code: bool=False) -> GreppedOut:
         """
         This identifies all the different types of intent filters
 
@@ -2097,7 +2098,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_parse_uri(self, show_code: bool = False) -> GreppedOut:
+    def code_parse_uri(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that is parsing a URI. This could be related to 
         web urls, or content provider urls. 
@@ -2126,7 +2127,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_database_interaction(self, show_code: bool = False) -> GreppedOut:
+    def code_database_interaction(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that is reading database files. 
         | `Reference <https://developer.android.com/reference/android/database/Cursor>`__
@@ -2154,7 +2155,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_phone_sensors(self, show_code: bool = False) -> GreppedOut:
+    def code_phone_sensors(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that initiates various sensors available by Android. 
         | `Reference <https://developer.android.com/guide/topics/sensors/sensors_motion#java>`__
@@ -2182,7 +2183,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_android_contacts_content_provider(self, show_code: bool = False) -> GreppedOut:
+    def code_android_contacts_content_provider(self, show_code: bool=False) -> GreppedOut:
         """
         Idicates imports, or any other place where the ContactsContract class and 
         its providors are being used. This typically indicates that the app can read 
@@ -2212,7 +2213,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_read_sms_messages(self, show_code: bool = False) -> GreppedOut:
+    def code_read_sms_messages(self, show_code: bool=False) -> GreppedOut:
         """
         Searches for SmsMessage class which is typically used to read SMS messages 
         send to a device. 
@@ -2241,7 +2242,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_regex_pattern(self, show_code: bool = False) -> GreppedOut:
+    def code_regex_pattern(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that compiles regex patterns. 
         | `Reference <https://developer.android.com/reference/java/util/regex/Pattern>`__
@@ -2269,7 +2270,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_regex_matcher(self, show_code: bool = False) -> GreppedOut:
+    def code_regex_matcher(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that is processing regex. 
         | `Reference <https://developer.android.com/reference/java/util/regex/Matcher>`__
@@ -2297,7 +2298,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_notification_manager(self, show_code: bool = False) -> GreppedOut:
+    def code_notification_manager(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code controls notifications. 
         | `Reference <https://developer.android.com/reference/android/app/NotificationManager>`__
@@ -2325,7 +2326,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_send_sms_text(self, show_code: bool = False) -> GreppedOut:
+    def code_send_sms_text(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code can send SMS/Text messages. 
         | `Reference <https://developer.android.com/reference/android/app/NotificationManager>`__
@@ -2354,7 +2355,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_jar_urlconnection(self, show_code: bool = False) -> GreppedOut:
+    def code_jar_urlconnection(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that is using the JarURLConnection API. 
         | `Reference <https://developer.android.com/reference/java/net/JarURLConnection>`__
@@ -2382,7 +2383,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_invisible_elements(self, show_code: bool = False) -> GreppedOut:
+    def code_invisible_elements(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code will set the visibility of an element to invisible. 
         | `Reference <https://developer.android.com/reference/android/view/View.html#INVISIBLE>`__
@@ -2410,7 +2411,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_trust_all_ssl(self, show_code: bool = False) -> GreppedOut:
+    def code_trust_all_ssl(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that willl allow all SSL connections to succeed without 
         verifying the hostname. This is a finding.  
@@ -2440,7 +2441,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_root_access(self, show_code: bool = False) -> GreppedOut:
+    def code_root_access(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that indicates if the app requests su access.
 
@@ -2467,7 +2468,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_reflection(self, show_code: bool = False) -> GreppedOut:
+    def code_reflection(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that allows reflections in Java. This is a finding. 
         Refer to the references for the risk and usage of reflections.  
@@ -2498,7 +2499,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_add_javascriptinterface(self, show_code: bool = False) -> GreppedOut:
+    def code_add_javascriptinterface(self, show_code: bool=False) -> GreppedOut:
         """
         Leads to vulnerabilities in android version jellybean and below
         | `Reference <https://wiki.sei.cmu.edu/confluence/pages/viewpage.action?pageId=87150717>`__
@@ -2526,7 +2527,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_create_new_file(self, show_code: bool = False) -> GreppedOut:
+    def code_create_new_file(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that creates new files in the android system.  
         | `Reference <https://developer.android.com/reference/java/io/File/>`__
@@ -2554,7 +2555,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_location_manager(self, show_code: bool = False) -> GreppedOut:
+    def code_location_manager(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that receives updated location information.  
         | `Reference <https://developer.android.com/reference/android/location/LocationManager>`__
@@ -2582,7 +2583,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_location(self, show_code: bool = False) -> GreppedOut:
+    def code_location(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that receives location information.  
         | `Reference <https://developer.android.com/reference/android/location/Location>`__
@@ -2610,7 +2611,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_screenshots(self, show_code: bool = False) -> GreppedOut:
+    def code_screenshots(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies usage of Bitmap and BitmapFactory classes. Although these are for 
         bitmap compression and manipulation, they are often used to take screenshots.  
@@ -2640,7 +2641,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_call_log(self, show_code: bool = False) -> GreppedOut:
+    def code_call_log(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that retreives call logs. May be possible malware behaviour. 
         | `Reference <https://developer.android.com/reference/android/provider/CallLog>`__
@@ -2668,7 +2669,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_camera_access(self, show_code: bool = False) -> GreppedOut:
+    def code_camera_access(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that accesses the camera and picture taking functionality. 
         | `Reference <https://developer.android.com/reference/android/hardware/Camera>`__
@@ -2698,7 +2699,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_browser_db_access(self, show_code: bool = False) -> GreppedOut:
+    def code_browser_db_access(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that accesses the browser db. This db usually 
         includes browsing history.  
@@ -2727,7 +2728,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_database_query(self, show_code: bool = False) -> GreppedOut:
+    def code_database_query(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies code that queries any database on the device.  
         | `Reference <https://developer.android.com/reference/android/database/sqlite/SQLiteDatabase#query(boolean,%20java.lang.String,%20java.lang.String[],%20java.lang.String,%20java.lang.String[],%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)>`__
@@ -2755,7 +2756,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_boot_completed_persistance(self, show_code: bool = False) -> GreppedOut:
+    def code_boot_completed_persistance(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies if the application uses BOOT_COMPLETED action which is 
         typically used to start a service or a receiver on reboot. This indicates 
@@ -2786,7 +2787,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_accessibility_service(self, show_code: bool = False) -> GreppedOut:
+    def code_accessibility_service(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies if the application uses AccessibilityService and 
         its various classes. It also looks for the accessibilityEvent method.   
@@ -2816,7 +2817,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_download_manager(self, show_code: bool = False) -> GreppedOut:
+    def code_download_manager(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies if the application uses the DownloadManager class to 
         download files from onlines services.   
@@ -2845,7 +2846,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_mediastore(self, show_code: bool = False) -> GreppedOut:
+    def code_mediastore(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies if he MediaStore class or some of its common 
         subclasses are being used by the app. These classes are used to get 
@@ -2875,7 +2876,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_firebase_imports(self, show_code: bool = False) -> GreppedOut:
+    def code_firebase_imports(self, show_code: bool=False) -> GreppedOut:
         """
         Identifies if he MediaStore class or some of its common 
         subclasses are being used by the app. These classes are used to get 
@@ -2905,7 +2906,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_deserialization(self, show_code: bool = False) -> GreppedOut:
+    def code_deserialization(self, show_code: bool=False) -> GreppedOut:
         """
         ObjectInputSteam when used with 'readObject' 'readObjectNodData' 'readResolve' 'readExternal'
         will likely result in a Deserialization vulnerability   
@@ -2964,7 +2965,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_websocket_usage(self, show_code: bool = False) -> GreppedOut:
+    def code_websocket_usage(self, show_code: bool=False) -> GreppedOut:
         """
         Detects common Websockets init classes. 
         | `Reference <https://stackoverflow.com/questions/30547517/which-websocket-library-to-use-in-android-app>`__
@@ -2992,7 +2993,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_apache_http_get_request(self, show_code: bool = False) -> GreppedOut:
+    def code_apache_http_get_request(self, show_code: bool=False) -> GreppedOut:
         """
         Detects the HttpGet method from the apache library. This is generally used 
         to make GET requests.  
@@ -3022,7 +3023,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_apache_http_post_request(self, show_code: bool = False) -> GreppedOut:
+    def code_apache_http_post_request(self, show_code: bool=False) -> GreppedOut:
         """
         Detects the HttpPost method from the apache library. This is generally used 
         to make GET requests.  
@@ -3052,7 +3053,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_apache_http_other_request_methods(self, show_code: bool = False) -> GreppedOut:
+    def code_apache_http_other_request_methods(self, show_code: bool=False) -> GreppedOut:
         """
         Detects the HttpPut, HttpDelete, HttpHead, HttpTrace and HttpOptions methods 
         from the apache library. 
@@ -3082,7 +3083,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_package_installed(self, show_code: bool = False) -> GreppedOut:
+    def code_package_installed(self, show_code: bool=False) -> GreppedOut:
         """
         Detects the usage of the getInstalledPackages method from the PackageManager class. 
         | `Reference <https://developer.android.com/reference/kotlin/android/content/pm/PackageManager?hl=en#getinstalledpackages>`__ 
@@ -3110,7 +3111,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
-    def code_system_file_exists(self, show_code: bool = False) -> GreppedOut:
+    def code_system_file_exists(self, show_code: bool=False) -> GreppedOut:
         """
         Detects if the exists method from the File class is being called. 
         This method is typically used to check if the path in the class 
@@ -3138,3 +3139,87 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         self._code_analysis['file_exists'] = match
         self.log_debug('')
         return GreppedOut(match)
+
+    def code_imports(self, class_name: str) -> list:
+        """
+        Returns an array of filepaths where a import statement matched
+        the class_name. It does use a word boundary to get more of an 
+        exact match
+        
+        Parameters
+        ----------
+        class_name : str
+            Name of the absolute or relative class
+        
+        Returns
+        -------
+        list
+            List of file paths where a match has been found
+
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
+        >>> a = GlorifiedAndroid('/path/to/apk')
+        >>> a.code_imports()
+        """
+        return Ripgrepy(
+            fr'import.+{class_name}\b', self._java_sources
+        ).files_with_matches().run().as_string().splitlines()
+
+    def code_class_init(self, class_name: str, show_code: bool=False) -> GreppedOut:
+        """
+        This method will first identify import statemants from the provided 
+        ``class_name`` and then look for all new instances of ``new class_name``. 
+        ``class_name`` can either be a class like Date, or a package name like 
+        java.utils.Date
+        
+        Parameters
+        ----------
+        class_name : str
+            A valid class name. Can be either name; i.e. `Date`, or package name i.e `java.utils.Date`.
+        show_code : bool, optional
+            Show the full matched line, by default False, by default False
+        
+        Returns
+        -------
+        GreppedOut
+            GreppedOut object
+
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
+        >>> a = GlorifiedAndroid('/path/to/apk')
+        >>> a.code_class_init()
+        """
+        matches = []
+        files = self.code_imports(class_name)
+        class_name = class_name.split('.')[-1]
+        for file in files:
+            data = Ripgrepy(fr'new\s{class_name}\b', file).json().run().as_dict()
+            matches += self._ripgrepy_parse(data, file, show_code)
+        return GreppedOut(matches)
+
+    def code_exif_data(self, show_code: bool=False) -> GreppedOut:
+        """
+        Detects if the ExifInterface class is imported and then instantiated. 
+        This class is typically used to either set or get meta data from images  
+        | `Reference <https://developer.android.com/reference/android/media/ExifInterface>`__ 
+
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+
+        Returns
+        -------
+        GreppedOut
+            GreppedOut object
+
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
+        >>> a = GlorifiedAndroid('/path/to/apk')
+        >>> a.code_exif_data()
+        """
+        return self.code_class_init('android.media.ExifInterface', show_code=show_code)
+

@@ -430,3 +430,15 @@ def test_code_package_installed():
 
 def test_code_system_file_exists():
     assert g.code_system_file_exists().count == 2
+
+
+def test_code_imports():
+    assert len(g.code_imports('R')) == 86
+
+
+def test_code_class_init():
+    assert g.code_class_init('StringBuilder').count == 4
+
+
+def test_code_exif_data():
+    assert g.code_exif_data('StringBuilder').count == 0

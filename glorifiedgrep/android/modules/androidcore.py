@@ -21,7 +21,7 @@ class _AndroidCore():
     """
 
     def __init__(self, apk_path: str = None, output_dir: str = None, project_dir: str = None,
-                 rg_path: str = 'rg', jadx_path: str = 'jadx', clean_dir: bool = False):
+                 rg_path: str = 'rg', jadx_path: str = 'jadx', clean_dir: bool=False):
         """
         The init method for the whole GlorifiedAndroid module. This is interted throughout
 
@@ -42,7 +42,7 @@ class _AndroidCore():
         Typically, the prefix for the file path is removed when processing 
         filepaths in the various code analysis classes. This can be adjusted using 
 
-        >>> a.dir_prefix = ''
+        >>> a.remove_dir_prefix = ''
 
         If **ripgrep** or **jadx** is not in path, analysis will not be complete. 
         To pass a user defined path for either jadx or rg, the GlorifiedAndroid class can be 
@@ -185,7 +185,7 @@ class _AndroidCore():
         # path to CERT.RSA
 
         #: Use this to make dirpath in output shorter. Is used in an re.sub function. Default is self._outputdir+/
-        self.dir_prefix = ''#f'{self._output_dir}/'
+        self.remove_dir_prefix = ''#f'{self._output_dir}/'
 
         self.log_debug(f'{self.__class__}')
 
@@ -278,13 +278,23 @@ class _AndroidCore():
     def _re_remove_dir_prefix(self, string):
         """
         This method is used to remove the file path prefix from results. Defaults to 
-        self._output_dir which can be overridden with self.dir_prefix
+        self._output_dir which can be overridden with self.remove_dir_prefix
 
         :param str string: String to sub
         :return: string
         :rtype: str
         """
-        return re.sub(f'{self.dir_prefix}', '', string)
+        return re.sub(f'{self.remove_dir_prefix}', '', string)
+
+    def _ripgrepy_parse(self, data: dict, file_path: str, show_code=False):
+        final = []
+        for d in data:
+            final.append({
+                'line': d['data']['line_number'],
+                'file': self._re_remove_dir_prefix(file_path),
+                'match': d['data']['lines']['text'] if show_code else d['data']['submatches'][0]['match']['text']
+            })
+        return final
 
     def _decompile_apk(self):
         """
