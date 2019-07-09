@@ -1,8 +1,9 @@
 <img src="https://raw.githubusercontent.com/securisec/glorifiedgrep/master/logo.png" width="150px">
 
 
-[![Build Status](https://travis-ci.com/securisec/glorifiedgrep.svg?token=8GQfGnTK7S1NU7bKCqeR&branch=master)](https://travis-ci.com/securisec/glorifiedgrep)
-[![Read the Docs](https://img.shields.io/readthedocs/glorifiedgrep.svg)](https://glorifiedgrep.readthedocs.io/en/latest/)
+[![Build Status](https://travis-ci.com/securisec/glorifiedgrep.svg?&branch=master)](https://travis-ci.com/securisec/glorifiedgrep)
+[![Read the Docs](https://img.shields.io/readthedocs/glorifiedgrep.svg?logo=read%20the%20docs)](https://glorifiedgrep.readthedocs.io/en/latest/)
+![PyPI](https://img.shields.io/pypi/v/glorifiedgrep.svg?logo=python&color=blue)
 
 # [DOCS](https://glorifiedgrep.readthedocs.io/en/latest/)
 
