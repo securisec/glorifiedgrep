@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.com/securisec/glorifiedgrep.svg?&branch=master)](https://travis-ci.com/securisec/glorifiedgrep)
 [![Read the Docs](https://img.shields.io/readthedocs/glorifiedgrep.svg?logo=read%20the%20docs)](https://glorifiedgrep.readthedocs.io/en/latest/)
-![PyPI](https://img.shields.io/pypi/v/glorifiedgrep.svg?logo=python&color=blue)
+[![PyPI](https://img.shields.io/pypi/v/glorifiedgrep.svg?logo=python&color=blue)](https://pypi.org/project/glorifiedgrep/)
 
 # [DOCS](https://glorifiedgrep.readthedocs.io/en/latest/)
 
