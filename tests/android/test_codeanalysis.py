@@ -444,4 +444,4 @@ def test_code_exif_data():
     assert g.code_exif_data('StringBuilder').count == 0
 
 def test_code_class_extends():
-    assert g.code_class_extends().count == 354
+    assert g.code_class_extends().count == 328
