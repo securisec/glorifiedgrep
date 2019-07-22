@@ -22,7 +22,7 @@ setup(
     author=__author__,
     packages=find_packages(exclude=('tests')),
     install_requires=[
-        'ripgrepy',
+        'ripgrepy==1.0.0',
         'asn1crypto==0.24.0',
         'cffi==1.11.5',
         'cryptography==2.3.1',

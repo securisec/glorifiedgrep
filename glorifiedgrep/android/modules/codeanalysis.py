@@ -3145,12 +3145,12 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         Returns an array of filepaths where a import statement matched
         the class_name. It does use a word boundary to get more of an 
         exact match
-        
+
         Parameters
         ----------
         class_name : str
             Name of the absolute or relative class
-        
+
         Returns
         -------
         list
@@ -3172,14 +3172,14 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         ``class_name`` and then look for all new instances of ``new class_name``. 
         ``class_name`` can either be a class like Date, or a package name like 
         java.utils.Date
-        
+
         Parameters
         ----------
         class_name : str
             A valid class name. Can be either name; i.e. `Date`, or package name i.e `java.utils.Date`.
         show_code : bool, optional
             Show the full matched line, by default False, by default False
-        
+
         Returns
         -------
         GreppedOut
@@ -3195,7 +3195,8 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         files = self.code_imports(class_name)
         class_name = class_name.split('.')[-1]
         for file in files:
-            data = Ripgrepy(fr'new\s{class_name}\b', file).json().run().as_dict()
+            data = Ripgrepy(fr'new\s{class_name}\b',
+                            file).json().run().as_dict()
             matches += self._ripgrepy_parse(data, file, show_code)
         return GreppedOut(matches)
 
@@ -3223,3 +3224,37 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         """
         return self.code_class_init('android.media.ExifInterface', show_code=show_code)
 
+    @_logger
+    def code_class_extends(self, show_code: bool=False) -> GreppedOut:
+        """
+        This method looks for any classes that are extending another class.
+
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+
+        Returns
+        -------
+        GreppedOut
+            GreppedOut object
+
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
+        >>> a = GlorifiedAndroid('/path/to/apk')
+        >>> a.code_class_extends()
+        """
+        final = []
+        regex = r'(\w+)\sextends\s(\w+)'
+        g = self._run_rg(regex=regex, code=show_code)
+        match = self._process_match(g)
+        import re
+        for m in match:
+            r = re.split(r'\sextends\s', m['match'])
+            m['class'] = r[0]
+            m['extends'] = r[1]
+            final.append(m)
+        self._code_analysis['class_extends'] = final
+        self.log_debug('')
+        return GreppedOut(final)
