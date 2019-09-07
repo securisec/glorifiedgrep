@@ -6,6 +6,7 @@ from .modules.manifestanalysis import _ManifestAnalysis
 from .modules.otheranalysis import _OtherAnalysis
 from .modules.owaspmasvs import _OwaspMasvs
 
+
 class ParseManifest(_ManifestAnalysis):
     """
     This class can be used to just parse an AnroidManifest.xml file and 

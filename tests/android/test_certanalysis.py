@@ -3,9 +3,9 @@ from pathlib import Path
 from glorifiedgrep import GlorifiedAndroid
 
 test_dir = Path()
-test_apk = test_dir / 'tests' / 'test.apk'
+test_apk = test_dir / "tests" / "test.apk"
 
-g = GlorifiedAndroid(test_apk.resolve(), output_dir='/tmp/ggtest')
+g = GlorifiedAndroid(test_apk.resolve(), output_dir="/tmp/ggtest")
 
 
 def test_cert_public_key():
@@ -17,8 +17,7 @@ def test_cert_certificate():
 
 
 def test_cert_digest():
-    assert g.cert_digest()[
-        'md5'] == b'3E:D3:56:CC:5E:5B:13:B1:A0:9B:52:F3:98:7C:39:D7'
+    assert g.cert_digest()["md5"] == b"3E:D3:56:CC:5E:5B:13:B1:A0:9B:52:F3:98:7C:39:D7"
 
 
 def test_cert_issuer():
@@ -34,7 +33,7 @@ def test_cert_serial_number():
 
 
 def test_cert_signature_algorithm():
-    assert g.cert_signature_algorithm() == b'sha256WithRSAEncryption'
+    assert g.cert_signature_algorithm() == b"sha256WithRSAEncryption"
 
 
 def test_cert_version():

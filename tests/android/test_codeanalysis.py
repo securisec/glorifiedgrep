@@ -3,9 +3,9 @@ from pathlib import Path
 from glorifiedgrep import GlorifiedAndroid
 
 test_dir = Path()
-test_apk = test_dir / 'tests' / 'test.apk'
+test_apk = test_dir / "tests" / "test.apk"
 
-g = GlorifiedAndroid(test_apk.resolve(), output_dir='/tmp/ggtest')
+g = GlorifiedAndroid(test_apk.resolve(), output_dir="/tmp/ggtest")
 
 
 def test_code_accessibility_service():
@@ -433,15 +433,16 @@ def test_code_system_file_exists():
 
 
 def test_code_imports():
-    assert len(g.code_imports('R')) == 86
+    assert len(g.code_imports("R")) == 86
 
 
 def test_code_class_init():
-    assert g.code_class_init('StringBuilder').count == 4
+    assert g.code_class_init("StringBuilder").count == 4
 
 
 def test_code_exif_data():
-    assert g.code_exif_data('StringBuilder').count == 0
+    assert g.code_exif_data("StringBuilder").count == 0
+
 
 def test_code_class_extends():
     assert g.code_class_extends().count == 328

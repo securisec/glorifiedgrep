@@ -3,9 +3,9 @@ from pathlib import Path
 from glorifiedgrep import GlorifiedAndroid
 
 test_dir = Path()
-test_apk = test_dir / 'tests' / 'test.apk'
+test_apk = test_dir / "tests" / "test.apk"
 
-g = GlorifiedAndroid(test_apk.resolve(), output_dir='/tmp/ggtest')
+g = GlorifiedAndroid(test_apk.resolve(), output_dir="/tmp/ggtest")
 
 
 def test_owasp_cloud_backup():

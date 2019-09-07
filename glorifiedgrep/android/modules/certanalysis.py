@@ -8,7 +8,6 @@ from ...out import GreppedOut
 
 
 class _CertAnalysis(_AndroidCore):
-
     def _get_certificates(self, o):
         # https://stackoverflow.com/a/45111623/7402287
         certs = _ffi.NULL
@@ -24,9 +23,9 @@ class _CertAnalysis(_AndroidCore):
             pycerts.append(pycert)
 
         if not pycerts:
-            self.log_debug('')
+            self.log_debug("")
             return []
-        self.log_debug('')
+        self.log_debug("")
         return tuple(pycerts)
 
     def _read_cert(self):
@@ -36,8 +35,8 @@ class _CertAnalysis(_AndroidCore):
         :return: cert buffer
         :rtype: buffer
         """
-        with open(self._cert_path, 'rb') as f:
-            self.log_debug('')
+        with open(self._cert_path, "rb") as f:
+            self.log_debug("")
             return f.read()
 
     def _cert_object(self):
@@ -48,7 +47,7 @@ class _CertAnalysis(_AndroidCore):
         certs = self._get_certificates(pkcs7)
         certificate = crypto.dump_certificate(crypto.FILETYPE_PEM, certs[0])
         a = crypto.load_certificate(crypto.FILETYPE_PEM, certificate)
-        self.log_debug('')
+        self.log_debug("")
         return a
 
     def all_cert_analysis(self):
@@ -62,11 +61,10 @@ class _CertAnalysis(_AndroidCore):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.all_manifest_analysis()
         """
-        methods = [p for p in vars(
-            _CertAnalysis).keys() if not p.startswith('_')]
-        [getattr(self, m)() for m in methods if m != 'all_cert_analysis']
-        self.log_debug('')
-        return self._android_findings['cert_analysis']
+        methods = [p for p in vars(_CertAnalysis).keys() if not p.startswith("_")]
+        [getattr(self, m)() for m in methods if m != "all_cert_analysis"]
+        self.log_debug("")
+        return self._android_findings["cert_analysis"]
 
     @_logger
     def cert_public_key(self) -> GreppedOut:
@@ -90,8 +88,8 @@ class _CertAnalysis(_AndroidCore):
         bio = crypto._new_mem_buf()
         cryptolib.PEM_write_bio_PUBKEY(bio, p._pkey)
         key = crypto._bio_to_string(bio)
-        self._cert_analysis['public_key'] = [key]
-        self.log_debug('')
+        self._cert_analysis["public_key"] = [key]
+        self.log_debug("")
         return GreppedOut([key])
 
     @_logger
@@ -113,8 +111,8 @@ class _CertAnalysis(_AndroidCore):
         pkcs7 = crypto.load_pkcs7_data(crypto.FILETYPE_ASN1, self._read_cert())
         certs = self._get_certificates(pkcs7)
         certificate = crypto.dump_certificate(crypto.FILETYPE_PEM, certs[0])
-        self._cert_analysis['certificate'] = [certificate]
-        self.log_debug('')
+        self._cert_analysis["certificate"] = [certificate]
+        self.log_debug("")
         return GreppedOut([certificate])
 
     @_logger
@@ -133,10 +131,9 @@ class _CertAnalysis(_AndroidCore):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.cert_digest()
         """
-        digest = {k: self._cert_object().digest(k)
-                  for k in ['md5', 'sha1', 'sha256']}
-        self._cert_analysis['digest'] = [digest]
-        self.log_debug('')
+        digest = {k: self._cert_object().digest(k) for k in ["md5", "sha1", "sha256"]}
+        self._cert_analysis["digest"] = [digest]
+        self.log_debug("")
         return digest
 
     @_logger
@@ -156,9 +153,9 @@ class _CertAnalysis(_AndroidCore):
         >>> a.cert_issuer()
         """
         com = self._cert_object().get_issuer().get_components()
-        issuer = [{k[0].decode():k[1].decode()} for k in com]
-        self._cert_analysis['issuer'] = issuer
-        self.log_debug('')
+        issuer = [{k[0].decode(): k[1].decode()} for k in com]
+        self._cert_analysis["issuer"] = issuer
+        self.log_debug("")
         return GreppedOut(issuer)
 
     @_logger
@@ -179,12 +176,12 @@ class _CertAnalysis(_AndroidCore):
         """
         d = self._cert_object()
         dates = {
-            'not_before': d.get_notBefore(),
-            'not_after': d.get_notAfter(),
-            'expired': d.has_expired()
+            "not_before": d.get_notBefore(),
+            "not_after": d.get_notAfter(),
+            "expired": d.has_expired(),
         }
-        self._cert_analysis['valid'] = [dates]
-        self.log_debug('')
+        self._cert_analysis["valid"] = [dates]
+        self.log_debug("")
         return dates
 
     @_logger
@@ -206,8 +203,8 @@ class _CertAnalysis(_AndroidCore):
 
         """
         a = self._cert_object().get_serial_number()
-        self._cert_analysis['serial_number'] = [a]
-        self.log_debug('')
+        self._cert_analysis["serial_number"] = [a]
+        self.log_debug("")
         return a
 
     @_logger
@@ -227,8 +224,8 @@ class _CertAnalysis(_AndroidCore):
         >>> a.cert_signature_algorithm()
         """
         a = self._cert_object().get_signature_algorithm()
-        self._cert_analysis['signature_algorithm'] = [a]
-        self.log_debug('')
+        self._cert_analysis["signature_algorithm"] = [a]
+        self.log_debug("")
         return a
 
     @_logger
@@ -248,8 +245,8 @@ class _CertAnalysis(_AndroidCore):
         >>> a.cert_version()
         """
         a = self._cert_object().get_version()
-        self._cert_analysis['version'] = [a]
-        self.log_debug('')
+        self._cert_analysis["version"] = [a]
+        self.log_debug("")
         return a
 
     @_logger
@@ -269,8 +266,8 @@ class _CertAnalysis(_AndroidCore):
         >>> a.cert_bits()
         """
         a = self._cert_object().get_pubkey().bits()
-        self._cert_analysis['bits'] = [a]
-        self.log_debug('')
+        self._cert_analysis["bits"] = [a]
+        self.log_debug("")
         return a
 
     @_logger
@@ -290,7 +287,7 @@ class _CertAnalysis(_AndroidCore):
         >>> a.cert_subject()
         """
         com = self._cert_object().get_subject().get_components()
-        issuer = [{k[0].decode():k[1].decode()} for k in com]
-        self._cert_analysis['subject'] = issuer
-        self.log_debug('')
+        issuer = [{k[0].decode(): k[1].decode()} for k in com]
+        self._cert_analysis["subject"] = issuer
+        self.log_debug("")
         return issuer

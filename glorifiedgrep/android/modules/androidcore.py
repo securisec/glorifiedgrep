@@ -14,14 +14,21 @@ from .exceptions import *
 from ...__version__ import __version__
 
 
-class _AndroidCore():
+class _AndroidCore:
     """
     The purpose of this class is to prepare the APK for analysis and 
     offer helper functions to other classes.
     """
 
-    def __init__(self, apk_path: str = None, output_dir: str = None, project_dir: str = None,
-                 rg_path: str = 'rg', jadx_path: str = 'jadx', clean_dir: bool=False):
+    def __init__(
+        self,
+        apk_path: str = None,
+        output_dir: str = None,
+        project_dir: str = None,
+        rg_path: str = "rg",
+        jadx_path: str = "jadx",
+        clean_dir: bool = False,
+    ):
         """
         The init method for the whole GlorifiedAndroid module. This is interted throughout
 
@@ -50,28 +57,28 @@ class _AndroidCore():
 
         >>> a = GlorifiedAndroid('/path/to/apk', jadx_path='path/to/jadx', rg_path='/path/to/rg')
         """
-        logging.debug(f'GlorifiedAndroid version: {__version__}')
+        logging.debug(f"GlorifiedAndroid version: {__version__}")
         # place holder dictionaries to hold processing data
         self._android_findings = {
-            'manifest_analysis': {},
-            'code_analysis': {},
-            'file_analysis': {},
-            'cert_analysis': {},
-            'owasp_analysis': {},
-            'other_analysis': {}
+            "manifest_analysis": {},
+            "code_analysis": {},
+            "file_analysis": {},
+            "cert_analysis": {},
+            "owasp_analysis": {},
+            "other_analysis": {},
         }
         #: Dict object that holds manifest analysis
-        self._manifest_analysis = self._android_findings['manifest_analysis']
+        self._manifest_analysis = self._android_findings["manifest_analysis"]
         #: Dict object that holds code analysis
-        self._code_analysis = self._android_findings['code_analysis']
+        self._code_analysis = self._android_findings["code_analysis"]
         #: Dict object that holds file analysis
-        self._file_analysis = self._android_findings['file_analysis']
+        self._file_analysis = self._android_findings["file_analysis"]
         #: Dict object that holds cert analysis
-        self._cert_analysis = self._android_findings['cert_analysis']
+        self._cert_analysis = self._android_findings["cert_analysis"]
         #: Dict object that holds OWASP analysis
-        self._owasp_analysis = self._android_findings['owasp_analysis']
+        self._owasp_analysis = self._android_findings["owasp_analysis"]
         #: Dict object that holds other analysis
-        self._other_analysis = self._android_findings['other_analysis']
+        self._other_analysis = self._android_findings["other_analysis"]
         #: Logging debug method binder
         self.log_debug = logging.debug
         #: Logging warning method binder
@@ -90,7 +97,7 @@ class _AndroidCore():
             self._project_dir = os.path.expanduser(project_dir)
         except TypeError:
             self._project_dir = None
-        logging.debug(f'PROJECT_DIR: {self._project_dir}')
+        logging.debug(f"PROJECT_DIR: {self._project_dir}")
 
         # if self._project_dir is None and apk_path is None:
         #     raise Exception('Specify either apk_path or project_dir')
@@ -98,25 +105,25 @@ class _AndroidCore():
         #     raise Exception('Specify either apk_path or project_dir')
 
         if self._project_dir is not None:
-            with open(f'{self._project_dir}/decompiled') as f:
+            with open(f"{self._project_dir}/decompiled") as f:
                 #: path for apk
                 self._apk_path = f.read().splitlines()[0]
-            logging.debug(f'APK_PATH: {self._apk_path}')
+            logging.debug(f"APK_PATH: {self._apk_path}")
             #: decompile output director
             self._output_dir = self._project_dir
-            logging.debug(f'OUTPUT_DIR: {self._output_dir}')
+            logging.debug(f"OUTPUT_DIR: {self._output_dir}")
         else:
             try:
                 self._apk_path = os.path.expanduser(apk_path)
             except TypeError:
                 self._apk_path = None
-            logging.debug(f'APK_PATH: {self._apk_path}')
+            logging.debug(f"APK_PATH: {self._apk_path}")
             #: decompile output director
             try:
                 self._output_dir = os.path.expanduser(output_dir)
             except TypeError:
                 self._output_dir = None
-            logging.debug(f'OUTPUT_DIR: {self._output_dir}')
+            logging.debug(f"OUTPUT_DIR: {self._output_dir}")
 
         self._os_type = platform.system()
         #: Can control the timeout value for how long it takes to process decompilation
@@ -127,67 +134,73 @@ class _AndroidCore():
         self.FILTER = []
 
         # Checks for correct python version
-        if platform.python_version()[0] != '3':
+        if platform.python_version()[0] != "3":
             logging.exception(NotValidPythonVersion)
-            raise NotValidPythonVersion(
-                'GlorifiedAndroid only works with python 3')
+            raise NotValidPythonVersion("GlorifiedAndroid only works with python 3")
 
         #: Create temp directory if no output_dir is specified
         if self._output_dir is None:
-            if self._os_type == 'Linux' or self._os_type == 'Darwin':
-                self._output_dir = '/tmp/GlorifiedAndroid'
-            elif self._os_type == 'Windows':
-                self._output_dir = '{}/GlorifiedAndroid'.format(gettempdir())
+            if self._os_type == "Linux" or self._os_type == "Darwin":
+                self._output_dir = "/tmp/GlorifiedAndroid"
+            elif self._os_type == "Windows":
+                self._output_dir = "{}/GlorifiedAndroid".format(gettempdir())
             if not os.path.exists(self._output_dir):
                 os.makedirs(self._output_dir)
-                logging.debug(f'Temp dir created in {self._output_dir}')
+                logging.debug(f"Temp dir created in {self._output_dir}")
             else:
-                logging.debug(f'Directory already exists {self._output_dir}')
+                logging.debug(f"Directory already exists {self._output_dir}")
         else:
             if not os.path.exists(self._output_dir):
                 os.makedirs(self._output_dir)
-                logging.debug(f'Temp dir created in {self._output_dir}')
+                logging.debug(f"Temp dir created in {self._output_dir}")
             else:
-                logging.debug(f'Directory already exists {self._output_dir}')
+                logging.debug(f"Directory already exists {self._output_dir}")
 
         #: path to manifest file
-        self._manifest_path = f'{self._output_dir}/resources/AndroidManifest.xml'
+        self._manifest_path = f"{self._output_dir}/resources/AndroidManifest.xml"
         #: unzipped dir
-        self._unzipped_path = f'{self._output_dir}/unzipped'
-        logging.debug(f'Unzipped path: {self._unzipped_path}')
+        self._unzipped_path = f"{self._output_dir}/unzipped"
+        logging.debug(f"Unzipped path: {self._unzipped_path}")
         #: directory to decompiled JAVA source
-        self._java_sources = f'{self._output_dir}/sources'
+        self._java_sources = f"{self._output_dir}/sources"
 
         for check in [rg_path, self._jadx_path]:
             # Does a basic sanity check to make sure required binaries exist
             if which(check) == None:
-                raise DependentBinaryMissing('Required binary missing')
+                raise DependentBinaryMissing("Required binary missing")
         #: jadx commadn to run
-        self._jadx = f'{self._jadx_path} --deobf -d {self._output_dir}'
+        self._jadx = f"{self._jadx_path} --deobf -d {self._output_dir}"
         self._ripgrep = os.path.expanduser(rg_path)
         # Check if ripgrep is installed
-        if 'ripgrep' not in subprocess.getoutput('rg --version').splitlines()[0]:
-            raise RipGrepNotFound('ripgrep not found.\nPlease install ripgrep')
-        logging.debug(f'Binary paths: {self._jadx}, {self._ripgrep}')
+        if "ripgrep" not in subprocess.getoutput("rg --version").splitlines()[0]:
+            raise RipGrepNotFound("ripgrep not found.\nPlease install ripgrep")
+        logging.debug(f"Binary paths: {self._jadx}, {self._ripgrep}")
 
         #: Path to APK
         if self._apk_path is not None:
-            logging.debug('Decompiling and unzipping')
+            logging.debug("Decompiling and unzipping")
             self._decompile_apk()
             self._unzip_apk()
 
         # hack to find .RSA file when it is not standard name
         # only check this if the main GlorifiedAndroid class is called.
-        if self.__class__.__name__ == 'GlorifiedAndroid':
-            _cert_name = str(Path([x for x in os.listdir(
-                f'{self._unzipped_path}/META-INF') if x.endswith('.RSA')][0]))
-            self._cert_path = f'{self._unzipped_path}/META-INF/{_cert_name}'
+        if self.__class__.__name__ == "GlorifiedAndroid":
+            _cert_name = str(
+                Path(
+                    [
+                        x
+                        for x in os.listdir(f"{self._unzipped_path}/META-INF")
+                        if x.endswith(".RSA")
+                    ][0]
+                )
+            )
+            self._cert_path = f"{self._unzipped_path}/META-INF/{_cert_name}"
         # path to CERT.RSA
 
         #: Use this to make dirpath in output shorter. Is used in an re.sub function. Default is self._outputdir+/
-        self.remove_dir_prefix = ''#f'{self._output_dir}/'
+        self.remove_dir_prefix = ""  # f'{self._output_dir}/'
 
-        self.log_debug(f'{self.__class__}')
+        self.log_debug(f"{self.__class__}")
 
     def _run(self, command: str):
         """
@@ -199,11 +212,11 @@ class _AndroidCore():
         :rtype: list
         """
         output = subprocess.getoutput(command)
-        logging.debug(f'Command ran: {command}')
-        logging.debug('')
+        logging.debug(f"Command ran: {command}")
+        logging.debug("")
         return output
 
-    def _run_rg(self, rg_options='', regex=None, code=False, group='', path=None):
+    def _run_rg(self, rg_options="", regex=None, code=False, group="", path=None):
         """
         Method to run ripgrep recursively
 
@@ -214,14 +227,14 @@ class _AndroidCore():
         :rtype: list
         """
         if path is None:
-            path = f'{self._java_sources}'
+            path = f"{self._java_sources}"
         if code:
             command = f'{self._ripgrep} --hidden --no-heading -n {rg_options} "{regex}" {path}'
         else:
             command = f'{self._ripgrep} --hidden --no-heading -n -o {rg_options} "{regex}" {group} {path}'
         output = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
         out, err = output.communicate()
-        logging.debug(f'Grep command: {command}')
+        logging.debug(f"Grep command: {command}")
         return out.splitlines()
 
     def _process_match(self, data, is_url=False, owasp_category=None):
@@ -235,22 +248,24 @@ class _AndroidCore():
         :return: dict of file name, line number and match
         :rtype: dict
         """
+
         def match_handler():
-            match['file'] = file_path
-            match['line'] = d[1]
+            match["file"] = file_path
+            match["line"] = d[1]
             if is_url:
-                match['match'] = dedent(':'.join(d[2:]))
+                match["match"] = dedent(":".join(d[2:]))
             else:
-                match['match'] = dedent(d[2])
+                match["match"] = dedent(d[2])
             if owasp_category is not None:
-                match['owasp_top_10'] = owasp_category
+                match["owasp_top_10"] = owasp_category
             final.append(match)
+
         final = []
         for d in data:
             try:
                 match = {}
-                d = d.decode('utf-8')
-                d = d.split(':')
+                d = d.decode("utf-8")
+                d = d.split(":")
                 file_path = self._re_remove_dir_prefix(d[0])
                 if self.match_only == False:
                     if not any(white in file_path for white in self.FILTER):
@@ -262,7 +277,9 @@ class _AndroidCore():
                 pass
         return final
 
-    def _run_rg_and_process(self, regex: str, code: bool, path: str = None, rg_options: str = ''):
+    def _run_rg_and_process(
+        self, regex: str, code: bool, path: str = None, rg_options: str = ""
+    ):
         """
         Method that combines the run rg and process output functions
 
@@ -271,8 +288,7 @@ class _AndroidCore():
         :return: line, match and file
         :rtype: list
         """
-        out = self._run_rg(regex=regex, code=code,
-                           path=path, rg_options=rg_options)
+        out = self._run_rg(regex=regex, code=code, path=path, rg_options=rg_options)
         return self._process_match(out)
 
     def _re_remove_dir_prefix(self, string):
@@ -284,16 +300,20 @@ class _AndroidCore():
         :return: string
         :rtype: str
         """
-        return re.sub(f'{self.remove_dir_prefix}', '', string)
+        return re.sub(f"{self.remove_dir_prefix}", "", string)
 
     def _ripgrepy_parse(self, data: dict, file_path: str, show_code=False):
         final = []
         for d in data:
-            final.append({
-                'line': d['data']['line_number'],
-                'file': self._re_remove_dir_prefix(file_path),
-                'match': d['data']['lines']['text'] if show_code else d['data']['submatches'][0]['match']['text']
-            })
+            final.append(
+                {
+                    "line": d["data"]["line_number"],
+                    "file": self._re_remove_dir_prefix(file_path),
+                    "match": d["data"]["lines"]["text"]
+                    if show_code
+                    else d["data"]["submatches"][0]["match"]["text"],
+                }
+            )
         return final
 
     def _decompile_apk(self):
@@ -306,27 +326,32 @@ class _AndroidCore():
         if self._clean_dir == True:
             rmtree(self._output_dir)
 
-        if not os.path.exists(f'{self._output_dir}/decompiled'):
-            logging.info('Decompiling the APK')
+        if not os.path.exists(f"{self._output_dir}/decompiled"):
+            logging.info("Decompiling the APK")
             try:
-                p = subprocess.check_output(f'{self._jadx} {self._apk_path}',
-                                            shell=True, stderr=subprocess.DEVNULL,
-                                            timeout=self.decompile_timeout)
+                p = subprocess.check_output(
+                    f"{self._jadx} {self._apk_path}",
+                    shell=True,
+                    stderr=subprocess.DEVNULL,
+                    timeout=self.decompile_timeout,
+                )
                 # write a placeholder to indicate decompilation is already done
-                with open(f'{self._output_dir}/decompiled', 'w+') as f:
+                with open(f"{self._output_dir}/decompiled", "w+") as f:
                     f.write(self._apk_path)
             except subprocess.CalledProcessError:
-                with open(f'{self._output_dir}/decompiled', 'w+') as f:
+                with open(f"{self._output_dir}/decompiled", "w+") as f:
                     f.write(self._apk_path)
-                self.log_error('Errors in decompilation, but completed')
+                self.log_error("Errors in decompilation, but completed")
         else:
             # check if the apk is the same as that is being passed
-            with open(f'{self._output_dir}/decompiled', 'r') as f:
+            with open(f"{self._output_dir}/decompiled", "r") as f:
                 com = f.read().splitlines()
                 if com[0] != self._apk_path:
                     raise DifferentAPKExists(
-                        f'\nA different APK has been decompiled already.\nSet a new GlorifiedAndroid(output_dir='') or remove by setting clean_dir=True')
-            logging.debug('App already decompiled')
+                        f"\nA different APK has been decompiled already.\nSet a new GlorifiedAndroid(output_dir="
+                        ") or remove by setting clean_dir=True"
+                    )
+            logging.debug("App already decompiled")
 
     def _unzip_apk(self):
         """
@@ -334,13 +359,13 @@ class _AndroidCore():
         """
         if not os.path.exists(self._unzipped_path):
             os.makedirs(self._unzipped_path)
-            unzip = ZipFile(self._apk_path, 'r')
+            unzip = ZipFile(self._apk_path, "r")
             unzip.extractall(self._unzipped_path)
             unzip.close()
         else:
-            logging.debug('App is already unzipped')
+            logging.debug("App is already unzipped")
 
-    def _get_paths_from_unzipped(self, path: str, glob_pattern='**/*', is_file=True):
+    def _get_paths_from_unzipped(self, path: str, glob_pattern="**/*", is_file=True):
         """
         Is a generator that will return all the file paths from a 
         specified director

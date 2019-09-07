@@ -11,6 +11,7 @@ class GreppedOut:
     -------
     object
     """
+
     def __init__(self, data):
         self.out = data
 
@@ -27,7 +28,7 @@ class GreppedOut:
         """
         return len(self.out)
 
-    def in_file(self, path: str) -> 'GreppedOut':
+    def in_file(self, path: str) -> "GreppedOut":
         """
         Only include matches from the files which partially 
         matches the path argument. This method can be chained 
@@ -39,13 +40,13 @@ class GreppedOut:
             GreppedOut object
         """
         if isinstance(self.out, list):
-            self.out = [x for x in self.out if path in x['file']]
+            self.out = [x for x in self.out if path in x["file"]]
             return self
         else:
-            logging.warning('Method output is not an array')
+            logging.warning("Method output is not an array")
             return False
 
-    def exclude_file(self, path: str) -> 'GreppedOut':
+    def exclude_file(self, path: str) -> "GreppedOut":
         """
         Exclude matches from the files which partially 
         matches the path argument. This method can be chained 
@@ -57,10 +58,10 @@ class GreppedOut:
             GreppedOut object
         """
         if isinstance(self.out, list):
-            self.out = [x for x in self.out if path not in x['file']]
+            self.out = [x for x in self.out if path not in x["file"]]
             return self
         else:
-            logging.warning('Method output is not an array')
+            logging.warning("Method output is not an array")
             return False
 
     @property
@@ -73,7 +74,7 @@ class GreppedOut:
         list
             List of matches
         """
-        return [x['match'] for x in self.out]
+        return [x["match"] for x in self.out]
 
     @property
     def files(self) -> set:
@@ -85,7 +86,7 @@ class GreppedOut:
         set
             Set of filenames
         """
-        return set([x['file'] for x in self.out])
+        return set([x["file"] for x in self.out])
 
     def __repr__(self):
         return repr(self.out)

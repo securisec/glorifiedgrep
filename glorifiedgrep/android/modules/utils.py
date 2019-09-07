@@ -14,8 +14,10 @@ from ...logger import _logger
 try:
     import lief  # TODO installation https://github.com/lief-project/LIEF/issues/214
 except ImportError:
-    print('Cannot import lief. Different build needs for py 3.7\n'
-          'https://github.com/lief-project/LIEF/issues/214')
+    print(
+        "Cannot import lief. Different build needs for py 3.7\n"
+        "https://github.com/lief-project/LIEF/issues/214"
+    )
     pass
 
 
@@ -23,9 +25,12 @@ def _print_pem(der_bytes, cert_type):
     """
     Pretty prints pem keys and certificates
     """
-    cert = ''
+    cert = ""
     cert += "-----BEGIN %s-----\n" % cert_type
-    cert += "\r\n".join(textwrap.wrap(base64.b64encode(der_bytes).decode('ascii'), 64)) + '\n'
+    cert += (
+        "\r\n".join(textwrap.wrap(base64.b64encode(der_bytes).decode("ascii"), 64))
+        + "\n"
+    )
     cert += "-----END %s-----\n" % cert_type
     return cert
 
@@ -75,7 +80,7 @@ class JKS:
         match = []
         for alias, pk in self.keystore.private_keys.items():
             match.append(pk.alias)
-        self._core.log_debug('')
+        self._core.log_debug("")
         return match
 
     @_logger
@@ -101,7 +106,7 @@ class JKS:
                     match.append(_print_pem(pk.pkey_pkcs8, "PRIVATE KEY"))
             except TypeError:
                 pass
-        self._core.log_debug('')
+        self._core.log_debug("")
         return match
 
     @_logger
@@ -122,7 +127,7 @@ class JKS:
         for alias, pk in self.keystore.private_keys.items():
             for c in pk.cert_chain:
                 match.append(_print_pem(c[1], "CERTIFICATE"))
-        self._core.log_debug('')
+        self._core.log_debug("")
         return match
 
 
@@ -160,8 +165,8 @@ class BKS:
         """
         match = []
         for alias, pk in self.ks.certs.items():
-            match.append(_print_pem(pk.cert, 'CERTIFICATE'))
-        self._core.log_debug('')
+            match.append(_print_pem(pk.cert, "CERTIFICATE"))
+        self._core.log_debug("")
         return match
 
     @_logger
@@ -181,7 +186,7 @@ class BKS:
         match = []
         for alias, pk in self.ks.certs.items():
             match.append(print(pk.type))
-        self._core.log_debug('')
+        self._core.log_debug("")
         return match
 
     @_logger
@@ -201,11 +206,11 @@ class BKS:
         match = []
         for alias, pk in self.ks.certs.items():
             match.append(alias)
-        self._core.log_debug('')
+        self._core.log_debug("")
         return match
 
 
-class NativeELFAnalysis():
+class NativeELFAnalysis:
     """
     Class is used to handle the processing and analysis of 
     native libraries included in the APK. It relies of lief 
@@ -240,7 +245,7 @@ class NativeELFAnalysis():
         >>> n.elf_header_info()
         """
 
-        self._core.log_debug('')
+        self._core.log_debug("")
         return self._binary.header
 
     @_logger
@@ -258,7 +263,7 @@ class NativeELFAnalysis():
         >>> n.elf_imported_symbols()
         """
 
-        self._core.log_debug('')
+        self._core.log_debug("")
         return list(x.name for x in self._binary.imported_symbols)
 
     @_logger
@@ -275,7 +280,7 @@ class NativeELFAnalysis():
         --------
         >>> n.elf_exported_symbols()
         """
-        self._core.log_debug('')
+        self._core.log_debug("")
         return list(x.name for x in self._binary.exported_symbols)
 
     @_logger
@@ -293,7 +298,7 @@ class NativeELFAnalysis():
         >>> n.elf_strings_from_binary()
         """
 
-        self._core.log_debug('')
+        self._core.log_debug("")
         return self._binary.strings
 
     @_logger
@@ -311,11 +316,11 @@ class NativeELFAnalysis():
         >>> n.elf_libraries_binary()
         """
 
-        self._core.log_debug('')
+        self._core.log_debug("")
         return self._binary.libraries
 
 
-class NativeDEXAnalysis():
+class NativeDEXAnalysis:
     """
     Class is used to handle the processing and analysis of 
     dex files obtained from unzipping an APK. It relies of lief 
@@ -357,7 +362,7 @@ class NativeDEXAnalysis():
         >>> n.dex_parse()
         """
 
-        self._core.log_debug('')
+        self._core.log_debug("")
         return self._binary
 
     @_logger
@@ -377,13 +382,20 @@ class NativeDEXAnalysis():
         >>> n.dex_dex_classes()
         """
 
-        self._core.log_debug('')
+        self._core.log_debug("")
         for c in self._binary.classes:
-            yield dict(zip(
-                ['name', 'full_name', 'package_name', 'source_file', 'methods'],
-                [c.name, c.pretty_name, c.package_name, c.source_filename,
-                 [m.name for m in c.methods]]
-            ))
+            yield dict(
+                zip(
+                    ["name", "full_name", "package_name", "source_file", "methods"],
+                    [
+                        c.name,
+                        c.pretty_name,
+                        c.package_name,
+                        c.source_filename,
+                        [m.name for m in c.methods],
+                    ],
+                )
+            )
 
     @_logger
     def dex_strings(self) -> Iterable[list]:
@@ -400,7 +412,7 @@ class NativeDEXAnalysis():
         >>> n.dex_dex_strings()
         """
 
-        self._core.log_debug('')
+        self._core.log_debug("")
         for s in self._binary.strings:
             yield s
 
@@ -420,13 +432,19 @@ class NativeDEXAnalysis():
         >>> n.dex_dex_methods()
         """
 
-        self._core.log_debug('')
+        self._core.log_debug("")
         for m in self._binary.methods:
-            yield dict(zip(
-                ['name', 'class', 'parameters', 'return_type'],
-                [m.name, m.cls.pretty_name,
-                 [str(x) for x in m.prototype.parameters_type], str(m.prototype.return_type)]
-            ))
+            yield dict(
+                zip(
+                    ["name", "class", "parameters", "return_type"],
+                    [
+                        m.name,
+                        m.cls.pretty_name,
+                        [str(x) for x in m.prototype.parameters_type],
+                        str(m.prototype.return_type),
+                    ],
+                )
+            )
 
     @_logger
     def dex_info(self) -> Iterable[lief._pylief.DEX.File.classes]:
@@ -444,7 +462,7 @@ class NativeDEXAnalysis():
         >>> n.dex_dex_info()
         """
 
-        self._core.log_debug('')
+        self._core.log_debug("")
         for c in self._binary.classes:
             yield c
 
@@ -491,12 +509,9 @@ class SQL(_AndroidCore):
         >>> s.sqldb_tables()
         """
 
-        self._cursor.execute(
-            "SELECT name FROM sqlite_master WHERE type='table';")
-        self._core.log_debug('')
-        return list(map(
-            lambda x: x[0], self._cursor.fetchall()
-        ))
+        self._cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        self._core.log_debug("")
+        return list(map(lambda x: x[0], self._cursor.fetchall()))
 
     @_logger
     def sqldb_table_column_names(self, table_name: str) -> list:
@@ -518,11 +533,9 @@ class SQL(_AndroidCore):
         >>> s.sqldb_table_column_names()
         """
 
-        self._cursor.execute(f'SELECT * from {table_name}')
-        self._core.log_debug('')
-        return list(map(
-            lambda x: x[0], self._cursor.description
-        ))
+        self._cursor.execute(f"SELECT * from {table_name}")
+        self._core.log_debug("")
+        return list(map(lambda x: x[0], self._cursor.description))
 
     @_logger
     def sqldb_table_data(self, table_name: str) -> list:
@@ -544,8 +557,8 @@ class SQL(_AndroidCore):
         >>> s.sqldb_table_data()
         """
 
-        self._cursor.execute(f'SELECT * from {table_name}')
-        self._core.log_debug('')
+        self._cursor.execute(f"SELECT * from {table_name}")
+        self._core.log_debug("")
         return self._cursor.fetchall()
 
     @_logger
@@ -564,7 +577,7 @@ class SQL(_AndroidCore):
         >>> s.sqldb_dump_database()
         """
 
-        self._core.log_debug('')
+        self._core.log_debug("")
         return [x for x in self._connection.iterdump()]
 
 
@@ -601,10 +614,11 @@ class Utils(_AndroidCore):
         >>> u.utils_xml_to_dict('/path/to/file.xml)
         """
 
-        with open(file_path, 'r') as f:
-            self._core.log_debug('')
-            return dict(xmltodict.parse(
-                f.read(), process_namespaces=True, attr_prefix=''))
+        with open(file_path, "r") as f:
+            self._core.log_debug("")
+            return dict(
+                xmltodict.parse(f.read(), process_namespaces=True, attr_prefix="")
+            )
 
     @_logger
     def jks_password_bruteforce(self, jks_file: str, word_list: str) -> str:
@@ -623,7 +637,7 @@ class Utils(_AndroidCore):
         str
             Valid password if found. Else False
         """
-        with open(word_list, 'r') as f:
+        with open(word_list, "r") as f:
             for word in f:
                 try:
                     _ = jks.KeyStore.load(jks_file, word.strip())

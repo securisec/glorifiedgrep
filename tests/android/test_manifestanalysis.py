@@ -3,9 +3,10 @@ from pathlib import Path
 from glorifiedgrep import GlorifiedAndroid
 
 test_dir = Path()
-test_apk = test_dir / 'tests' / 'test.apk'
+test_apk = test_dir / "tests" / "test.apk"
 
-g = GlorifiedAndroid(test_apk.resolve(), output_dir='/tmp/ggtest')
+g = GlorifiedAndroid(test_apk.resolve(), output_dir="/tmp/ggtest")
+
 
 def test_manifest_activities():
     assert len(g.manifest_activities()) == 1
@@ -64,7 +65,7 @@ def test_manifest_min_sdk():
 
 
 def test_manifest_package_name():
-    assert g.manifest_package_name() == 'owasp.mstg.uncrackable3'
+    assert g.manifest_package_name() == "owasp.mstg.uncrackable3"
 
 
 def test_manifest_permission():
@@ -76,7 +77,7 @@ def test_manifest_platform_build_version_code():
 
 
 def test_manifest_platform_build_version_name():
-    assert g.manifest_platform_build_version_name() == '28'
+    assert g.manifest_platform_build_version_name() == "28"
 
 
 def test_manifest_providers():

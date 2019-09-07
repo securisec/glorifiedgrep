@@ -6,7 +6,6 @@ from .constants import _GrepConstants
 
 
 class _OwaspMasvs(_AndroidCore, _GrepConstants):
-
     def all_owasp_analysis(self):
         """
         Property runs all available checks in _OwaspMasvs
@@ -18,11 +17,10 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.all_owasp_analysis()
         """
-        methods = [p for p in vars(
-            _OwaspMasvs).keys() if not p.startswith('_')]
-        [getattr(self, m)() for m in methods if m != 'all_owasp_analysis']
-        self.log_debug('')
-        return self._android_findings['owasp_analysis']
+        methods = [p for p in vars(_OwaspMasvs).keys() if not p.startswith("_")]
+        [getattr(self, m)() for m in methods if m != "all_owasp_analysis"]
+        self.log_debug("")
+        return self._android_findings["owasp_analysis"]
 
     @_logger
     def owasp_crypto_primitives(self, show_code=False) -> GreppedOut:
@@ -53,11 +51,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_crypto_primitives()
         """
-        regex = r'\b(Cipher|Mac|MessageDigest|Signature|Key|PrivateKey|PublicKey|SecretKey)\.\w+\(?.+\)?'
+        regex = r"\b(Cipher|Mac|MessageDigest|Signature|Key|PrivateKey|PublicKey|SecretKey)\.\w+\(?.+\)?"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M6'])
-        self._owasp_analysis['crypto_primitives'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M6"])
+        self._owasp_analysis["crypto_primitives"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -84,11 +82,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_crypto_imports()
         """
-        regex = r'import (java.security.*|java.crypto.*)'
+        regex = r"import (java.security.*|java.crypto.*)"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M6'])
-        self._owasp_analysis['crypto_imports'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M6"])
+        self._owasp_analysis["crypto_imports"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -115,11 +113,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_insecure_random()
         """
-        regex = self._IGNORE_IMPORTS + r'(\bRandom\(.+\))'
+        regex = self._IGNORE_IMPORTS + r"(\bRandom\(.+\))"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M6'])
-        self._owasp_analysis['insecure_random'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M6"])
+        self._owasp_analysis["insecure_random"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -147,11 +145,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_hardcoded_keys()
         """
-        regex = r'^([^import].+)(SecretKeySpec)'
+        regex = r"^([^import].+)(SecretKeySpec)"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M6'])
-        self._owasp_analysis['hardcoded_keys'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M6"])
+        self._owasp_analysis["hardcoded_keys"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -179,11 +177,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_insecure_fingerprint_auth()
         """
-        regex = r'\.authenticate\(null,.+\)'
+        regex = r"\.authenticate\(null,.+\)"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M4'])
-        self._owasp_analysis['improper_fingerprint_auth'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M4"])
+        self._owasp_analysis["improper_fingerprint_auth"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -210,11 +208,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_world_read_write_files()
         """
-        regex = r'MODE_WORLD_WRITABLE|MODE_WORLD_READABLE'
+        regex = r"MODE_WORLD_WRITABLE|MODE_WORLD_READABLE"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M1', 'M2', 'M4'])
-        self._owasp_analysis['world_read_write_files'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M1", "M2", "M4"])
+        self._owasp_analysis["world_read_write_files"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -243,11 +241,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_external_storage()
         """
-        regex = self._IGNORE_IMPORTS + r'(getWritableDatabase\(\"?\w+\))'
+        regex = self._IGNORE_IMPORTS + r"(getWritableDatabase\(\"?\w+\))"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M1', 'M2', 'M4'])
-        self._owasp_analysis['encrypted_db'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M1", "M2", "M4"])
+        self._owasp_analysis["encrypted_db"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -276,11 +274,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_external_storage()
         """
-        regex = r'getExternal.+\(.+\)'
+        regex = r"getExternal.+\(.+\)"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M1', 'M2', 'M4'])
-        self._owasp_analysis['external_storage'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M1", "M2", "M4"])
+        self._owasp_analysis["external_storage"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -309,11 +307,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_external_cache_dir()
         """
-        regex = self._IGNORE_IMPORTS + r'(getExternalCacheDirs\(.+\))'
+        regex = self._IGNORE_IMPORTS + r"(getExternalCacheDirs\(.+\))"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category='M4')
-        self._owasp_analysis['external_cache_dir'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category="M4")
+        self._owasp_analysis["external_cache_dir"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -342,11 +340,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_get_secret_keys()
         """
-        regex = self._IGNORE_IMPORTS + r'(getSecretKey\(\)|getPrivateKey\(\))'
+        regex = self._IGNORE_IMPORTS + r"(getSecretKey\(\)|getPrivateKey\(\))"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M1', 'M2', 'M4'])
-        self._owasp_analysis['get_secret_key'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M1", "M2", "M4"])
+        self._owasp_analysis["get_secret_key"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -375,11 +373,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_keychain_password()
         """
-        regex = r'store\(OutputStream.+\)'
+        regex = r"store\(OutputStream.+\)"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M1', 'M2', 'M4'])
-        self._owasp_analysis['keychain_password'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M1", "M2", "M4"])
+        self._owasp_analysis["keychain_password"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -406,11 +404,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_cloud_backup()
         """
-        regex = self._IGNORE_IMPORTS + r'(BackupAgent(\w+)?)'
+        regex = self._IGNORE_IMPORTS + r"(BackupAgent(\w+)?)"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M1', 'M2', 'M4'])
-        self._owasp_analysis['kv_backup'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M1", "M2", "M4"])
+        self._owasp_analysis["kv_backup"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -438,11 +436,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_webview_ssl_ignore()
         """
-        regex = r'onReceivedSslError'
+        regex = r"onReceivedSslError"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M3'])
-        self._owasp_analysis['webview_ignore_ssl'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M3"])
+        self._owasp_analysis["webview_ignore_ssl"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -470,11 +468,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_ssl_no_hostname_verification()
         """
-        regex = r'public boolean verify\(String hostname, SSLSession session\)'
+        regex = r"public boolean verify\(String hostname, SSLSession session\)"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M3'])
-        self._owasp_analysis['ssl_no_hostname_verification'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M3"])
+        self._owasp_analysis["ssl_no_hostname_verification"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -501,11 +499,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_keystore_cert_pinning()
         """
-        regex = self._IGNORE_IMPORTS + r'(getTrustManagers\(\))'
+        regex = self._IGNORE_IMPORTS + r"(getTrustManagers\(\))"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M3'])
-        self._owasp_analysis['keystore_cert_pinning'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M3"])
+        self._owasp_analysis["keystore_cert_pinning"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -532,11 +530,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_webview_cert_pinning()
         """
-        regex = r'CN=\w+'
+        regex = r"CN=\w+"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M3'])
-        self._owasp_analysis['webview_cert_pinning'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M3"])
+        self._owasp_analysis["webview_cert_pinning"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -564,10 +562,10 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_properly_signed()
         """
-        command = f'apksigner verify --verbose {self._apk_path}'
-        final = [{'command': command, 'owasp_category': ['M7']}]
-        self._owasp_analysis['properly_signed'] = final
-        self.log_debug('')
+        command = f"apksigner verify --verbose {self._apk_path}"
+        final = [{"command": command, "owasp_category": ["M7"]}]
+        self._owasp_analysis["properly_signed"] = final
+        self.log_debug("")
         return GreppedOut(final)
 
     @_logger
@@ -595,11 +593,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_debug_code()
         """
-        regex = r'StrictMode\.(setThreadPolicy|VmPolicy)'
+        regex = r"StrictMode\.(setThreadPolicy|VmPolicy)"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M7'])
-        self._owasp_analysis['webview_cert_pinning'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M7"])
+        self._owasp_analysis["webview_cert_pinning"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -626,11 +624,14 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_runtime_exception_handling()
         """
-        regex = self._IGNORE_IMPORTS + r'(ActivityNotFoundException|AndroidRuntimeException|AnnotationTypeMismatchException|ArithmeticException|ArrayStoreException|BufferOverflowException|BufferUnderflowException|ClassCastException|CompletionException|ConcurrentModificationException|DOMException|DateTimeException|EmptyStackException|EnumConstantNotPresentException|FileSystemAlreadyExistsException|FileSystemNotFoundException|FileUriExposedException|GLException|ICUUncheckedIOException|IllegalArgumentException|IllegalMonitorStateException|IllegalStateException|IllformedLocaleException|IncompleteAnnotationException|IndexOutOfBoundsException|InflateException|LSException|MalformedParameterizedTypeException|MalformedParametersException|MediaCodec|MissingResourceException|NegativeArraySizeException|NetworkOnMainThreadException|NoSuchElementException|NoSuchPropertyException|NullPointerException|OperationCanceledException|ParcelFormatException|ParseException|ProviderException|ProviderNotFoundException|RSRuntimeException|RejectedExecutionException|RemoteViews|SQLException|SecurityException|StaleDataException|Surface|SurfaceHolder|TimeFormatException|TypeNotPresentException|UncheckedIOException|UndeclaredThrowableException|UnsupportedOperationException|UserManager|WindowManager|WindowManager|WrongMethodTypeException)'
+        regex = (
+            self._IGNORE_IMPORTS
+            + r"(ActivityNotFoundException|AndroidRuntimeException|AnnotationTypeMismatchException|ArithmeticException|ArrayStoreException|BufferOverflowException|BufferUnderflowException|ClassCastException|CompletionException|ConcurrentModificationException|DOMException|DateTimeException|EmptyStackException|EnumConstantNotPresentException|FileSystemAlreadyExistsException|FileSystemNotFoundException|FileUriExposedException|GLException|ICUUncheckedIOException|IllegalArgumentException|IllegalMonitorStateException|IllegalStateException|IllformedLocaleException|IncompleteAnnotationException|IndexOutOfBoundsException|InflateException|LSException|MalformedParameterizedTypeException|MalformedParametersException|MediaCodec|MissingResourceException|NegativeArraySizeException|NetworkOnMainThreadException|NoSuchElementException|NoSuchPropertyException|NullPointerException|OperationCanceledException|ParcelFormatException|ParseException|ProviderException|ProviderNotFoundException|RSRuntimeException|RejectedExecutionException|RemoteViews|SQLException|SecurityException|StaleDataException|Surface|SurfaceHolder|TimeFormatException|TypeNotPresentException|UncheckedIOException|UndeclaredThrowableException|UnsupportedOperationException|UserManager|WindowManager|WindowManager|WrongMethodTypeException)"
+        )
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M7'])
-        self._owasp_analysis['runtime_exception'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M7"])
+        self._owasp_analysis["runtime_exception"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -657,11 +658,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_code_check_permission()
         """
-        regex = self._IGNORE_IMPORTS + r'(checkCallingOrSelfPermission)'
+        regex = self._IGNORE_IMPORTS + r"(checkCallingOrSelfPermission)"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M7'])
-        self._owasp_analysis['code_check_permission'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M7"])
+        self._owasp_analysis["code_check_permission"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -688,11 +689,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_intent_parameter()
         """
-        regex = r'(getQueryParameter|getQueryParameterNames|getQueryParameters)\(.+\)'
+        regex = r"(getQueryParameter|getQueryParameterNames|getQueryParameters)\(.+\)"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M7'])
-        self._owasp_analysis['intent_parameters'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M7"])
+        self._owasp_analysis["intent_parameters"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -719,11 +720,11 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_webview_loadurl()
         """
-        regex = self._IGNORE_IMPORTS + r'(\.loadUrl\(.+\))'
+        regex = self._IGNORE_IMPORTS + r"(\.loadUrl\(.+\))"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M7'])
-        self._owasp_analysis['webview_loadurl'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M7"])
+        self._owasp_analysis["webview_loadurl"] = match
+        self.log_debug("")
         return GreppedOut(match)
 
     @_logger
@@ -751,9 +752,9 @@ class _OwaspMasvs(_AndroidCore, _GrepConstants):
         >>> a = GlorifiedAndroid('/path/to/apk')
         >>> a.owasp_webview_native_function()
         """
-        regex = self._IGNORE_IMPORTS + r'(addJavascriptInterface\(.+\))'
+        regex = self._IGNORE_IMPORTS + r"(addJavascriptInterface\(.+\))"
         g = self._run_rg(regex=regex, code=show_code)
-        match = self._process_match(g, owasp_category=['M7'])
-        self._owasp_analysis['webview_native_java'] = match
-        self.log_debug('')
+        match = self._process_match(g, owasp_category=["M7"])
+        self._owasp_analysis["webview_native_java"] = match
+        self.log_debug("")
         return GreppedOut(match)
