@@ -1,4 +1,6 @@
 from __future__ import annotations
+import re
+import json
 from ripgrepy import Ripgrepy
 from .androidcore import _AndroidCore
 from ...out import GreppedOut
@@ -2313,7 +2315,7 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
     @_logger
     def code_notification_manager(self, show_code: bool = False) -> GreppedOut:
         """
-        Identifies code controls notifications. 
+        Identifies code that controls notifications. 
         | `Reference <https://developer.android.com/reference/android/app/NotificationManager>`__
 
         Parameters
@@ -2335,6 +2337,34 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         regex = self._IGNORE_IMPORTS + r"(NotificationManager)"
         match = self._run_rg_and_process(regex=regex, code=show_code)
         self._code_analysis["notification_manager"] = match
+        self.log_debug("")
+        return GreppedOut(match)
+
+    @_logger
+    def code_notification_access(self, show_code: bool = False) -> GreppedOut:
+        """
+        Identifies code that can access notifications. 
+        | `Reference <https://developer.android.com/reference/android/app/NotificationListenerService>`__
+
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+
+        Returns
+        -------
+        GreppedOut
+            GreppedOut object
+
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
+        >>> a = GlorifiedAndroid('/path/to/apk')
+        >>> a.code_notification_access()
+        """
+        regex = self._IGNORE_IMPORTS + r"(NotificationListenerService)"
+        match = self._run_rg_and_process(regex=regex, code=show_code)
+        self._code_analysis["notification_access"] = match
         self.log_debug("")
         return GreppedOut(match)
 
@@ -2927,6 +2957,35 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         return GreppedOut(match)
 
     @_logger
+    def code_google_api_keys(self, show_code: bool = False) -> GreppedOut:
+        """
+        Searches for Firebase or Google services API keys. It is likely that 
+        an app that uses  Firebase will have keys in their sources, but these 
+        keys should be checked for what kind of access they allow.
+
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+
+        Returns
+        -------
+        GreppedOut
+            GreppedOut object
+
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
+        >>> a = GlorifiedAndroid('/path/to/apk')
+        >>> a.code_google_api_keys()
+        """
+        regex = r"AIza[A-Za-z0-9\-_]{35}"
+        match = self._run_rg_and_process(regex=regex, code=show_code)
+        self._code_analysis["google_api_keys"] = match
+        self.log_debug("")
+        return GreppedOut(match)
+
+    @_logger
     def code_deserialization(self, show_code: bool = False) -> GreppedOut:
         """
         ObjectInputSteam when used with 'readObject' 'readObjectNodData' 'readResolve' 'readExternal'
@@ -2952,6 +3011,64 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         regex = r"ObjectInputSteam"
         match = self._run_rg_and_process(regex=regex, code=show_code)
         self._code_analysis["deserialization"] = match
+        self.log_debug("")
+        return GreppedOut(match)
+
+    @_logger
+    def code_js_read_file(self, show_code: bool = False) -> GreppedOut:
+        """
+        Gets or Sets whether JavaScript running in the context of a file 
+        scheme URL can access content from other file scheme URLs.
+        | `Reference <https://developer.android.com/reference/android/webkit/WebSettings#getAllowFileAccessFromFileURLs()>`__
+
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+
+        Returns
+        -------
+        GreppedOut
+            GreppedOut object
+
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
+        >>> a = GlorifiedAndroid('/path/to/apk')
+        >>> a.code_js_read_file()
+        """
+        regex = (
+            r"setAllowUniversalAccessFromFileURLs|getAllowUniversalAccessFromFileURLs"
+        )
+        match = self._run_rg_and_process(regex=regex, code=show_code)
+        self._code_analysis["js_read_file"] = match
+        self.log_debug("")
+        return GreppedOut(match)
+
+    @_logger
+    def code_rabbit_amqp(self, show_code: bool = False) -> GreppedOut:
+        """
+        Checks if Rabbit amqp imports are present
+
+        Parameters
+        ----------
+        show_code : bool, optional
+            Show the full matched line, by default False
+
+        Returns
+        -------
+        GreppedOut
+            GreppedOut object
+
+        Examples
+        --------
+        >>> from glorifiedgrep import GlorifiedAndroid
+        >>> a = GlorifiedAndroid('/path/to/apk')
+        >>> a.code_rabbit_amqp()
+        """
+        regex = r"^import.+com.rabbitmq.client.+"
+        match = self._run_rg_and_process(regex=regex, code=show_code)
+        self._code_analysis["rabbit_amqp"] = match
         self.log_debug("")
         return GreppedOut(match)
 
@@ -3222,8 +3339,11 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         files = self.code_imports(class_name)
         class_name = class_name.split(".")[-1]
         for file in files:
-            data = Ripgrepy(fr"new\s{class_name}\b", file).json().run().as_dict()
-            matches += self._ripgrepy_parse(data, file, show_code)
+            try:
+                data = Ripgrepy(fr"new\s{class_name}\b", file).json().run().as_dict()
+                matches += self._ripgrepy_parse(data, file, show_code)
+            except:
+                continue
         return GreppedOut(matches)
 
     def code_exif_data(self, show_code: bool = False) -> GreppedOut:
@@ -3275,7 +3395,6 @@ class _CodeAnalysis(_AndroidCore, _GrepConstants):
         regex = r"(\w+)\sextends\s(\w+)"
         g = self._run_rg(regex=regex, code=show_code)
         match = self._process_match(g)
-        import re
 
         for m in match:
             r = re.split(r"\sextends\s", m["match"])

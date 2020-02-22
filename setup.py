@@ -21,6 +21,7 @@ setup(
     version=__version__,
     author=__author__,
     packages=find_packages(exclude=("tests")),
+    python_requires=">=3.7",
     install_requires=[
         "ripgrepy==1.0.0",
         "asn1crypto==0.24.0",
