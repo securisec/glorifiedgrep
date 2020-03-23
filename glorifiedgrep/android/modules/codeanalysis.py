@@ -9,24 +9,24 @@ from .constants import _GrepConstants
 
 
 class _CodeAnalysis(_AndroidCore, _GrepConstants):
-    def all_code_analysis(self) -> GreppedOut:
-        """
-        Property runs all available checks in _CodeAnalysis
+    # def all_code_analysis(self) -> GreppedOut:
+    #     """
+    #     Property runs all available checks in _CodeAnalysis
 
-        :return: Dictionary of all other analysis
+    #     :return: Dictionary of all other analysis
 
-        >>> from glorifiedgrep import GlorifiedAndroid
-        >>> a = GlorifiedAndroid('/path/to/apk')
-        >>> a.all_code_analysis()
-        """
-        methods = [p for p in vars(_CodeAnalysis).keys() if not p.startswith("_")]
-        [
-            getattr(self, m)()
-            for m in methods
-            if m not in ["all_code_analysis", "code_search"]
-        ]
-        self.log_debug("")
-        return self._android_findings["code_analysis"]
+    #     >>> from glorifiedgrep import GlorifiedAndroid
+    #     >>> a = GlorifiedAndroid('/path/to/apk')
+    #     >>> a.all_code_analysis()
+    #     """
+    #     methods = [p for p in vars(_CodeAnalysis).keys() if not p.startswith("_")]
+    #     [
+    #         getattr(self, m)()
+    #         for m in methods
+    #         if m not in ["all_code_analysis", "code_search"]
+    #     ]
+    #     self.log_debug("")
+    #     return self._android_findings["code_analysis"]
 
     @_logger
     def code_command_exec(self, show_code: bool = False) -> GreppedOut:
