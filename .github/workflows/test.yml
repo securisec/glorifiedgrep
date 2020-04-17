@@ -14,7 +14,7 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-          - macos-latest
+          # - macos-latest
         python-version:
           - "3.7"
           # - "3.8"
@@ -46,10 +46,10 @@ jobs:
           wget https://github.com/BurntSushi/ripgrep/releases/download/11.0.1/ripgrep_11.0.1_amd64.deb -O /tmp/ripgrep
           sudo dpkg -i /tmp/ripgrep
 
-      - name: Install ripgrep osx
-        if: matrix.os == 'macOS-latest'
-        run: |
-          brew install ripgrep
+      # - name: Install ripgrep osx
+      #   if: matrix.os == 'macOS-latest'
+      #   run: |
+      #     brew install ripgrep
 
       - name: Install jadx
         run: |
