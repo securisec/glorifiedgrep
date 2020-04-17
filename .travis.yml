@@ -16,7 +16,7 @@ script:
 - java -version
 - rg --version
 - jadx --version
-- pytest --disable-pytest-warning
+- pytest --disable-pytest-warnings
 cache: pip
 notifications:
   slack:

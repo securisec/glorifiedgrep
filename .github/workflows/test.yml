@@ -64,7 +64,7 @@ jobs:
           pip install -e .
 
       - name: Run pytest
-        run: pytest --disable-pytest-warning
+        run: pytest --disable-pytest-warnings
 
       - uses: actions/cache@v1
         if: startsWith(runner.os, 'Linux')
