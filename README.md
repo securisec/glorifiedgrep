@@ -34,6 +34,8 @@ print(g.search_methods('webview'))
 `glorifiedgrep` has one hard dependency. ripgrep. It will attempt to load `rg` from path, but this can be overwritten using `rg_path` paramter in the class. Refer to the docs for more info. 
 
 ## Install
+If you are using Python 3.8, `cffi` might not install correctly, and you have to follow instructions on their site on how to solve that.
+
 ### Pypi
 **Developed using python 3.7**
 It is recommended that you use virtualenv to install as some dependencies might break your other libs.
