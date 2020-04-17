@@ -1,11 +1,14 @@
 
 Tests:
-  ☐ Add github actions test for python 3.7 and 3.8
+  ☐ add tests for osx
 
 Core:
-  ✔ update requirements
 
 Android:
   Methods:
     ☐ open matching file in editor?
     ☐ detect deeplinks
+
+Archive:
+  ✔ Add github actions test for python 3.7 and 3.8 @project(Tests)
+  ✔ update requirements @project(Core)
