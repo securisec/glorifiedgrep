@@ -4,7 +4,7 @@ dist: xenial
 sudo: true
 script:
 - pip install -r requirements.txt
-- pip install pytest==4.6.3
+- pip install pytest
 - pip install decorator
 - pip install -e .
 - wget https://github.com/BurntSushi/ripgrep/releases/download/11.0.1/ripgrep_11.0.1_amd64.deb
