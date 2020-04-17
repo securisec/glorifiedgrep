@@ -1,0 +1,78 @@
+name: test
+
+on:
+  - push
+  - pull_request
+  
+jobs:
+  test:
+    name: 'Run pytest'
+    runs-on: ${{matrix.os}}
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+        python-version:
+          - "3.7"
+          - "3.8"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup python
+        uses: actions/setup-python@v1.2.0
+        with:
+          python-version: ${{matrix.python-version}}
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '8'
+          java-package: jre
+
+      - name: Show versions
+        run: |
+          python -V
+          pip -V
+          java -version
+
+      - name: Install ripgrep
+        run: |
+          wget https://github.com/BurntSushi/ripgrep/releases/download/11.0.1/ripgrep_11.0.1_amd64.deb -O /tmp/ripgrep
+          sudo dpkg -i /tmp/ripgrep
+
+      - name: Install jadx
+        run: |
+          wget https://github.com/skylot/jadx/releases/download/v1.0.0/jadx-1.0.0.zip -O /tmp/jadx.zip
+          unzip /tmp/jadx.zip -d /tmp/jadx
+          sudo ln -s /tmp/jadx/bin/jadx /usr/local/bin/jadx
+
+      - name: Install
+        run: |
+          pip install pytest==4.6.3
+          pip install decorator
+          pip install -e .
+
+      - name: Run pytest
+        run: pytest --disable-pytest-warning
+
+      - uses: actions/cache@v1
+        if: startsWith(runner.os, 'Linux')
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      
+      - uses: actions/cache@v1
+        if: startsWith(runner.os, 'macOS')
+        with:
+          path: ~/Library/Caches/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+        

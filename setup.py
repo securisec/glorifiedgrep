@@ -40,5 +40,8 @@ setup(
         "twofish==0.3.0",
         "xmltodict==0.11.0",
     ],
-    classifiers=["Programming Language :: Python :: 3.7"],
+    classifiers=[
+        "Programming Language :: Python :: 3.7"
+        "Programming Language :: Python :: 3.8"
+    ],
 )

@@ -1,0 +1,11 @@
+
+Tests:
+  ☐ Add github actions test for python 3.7 and 3.8
+
+Core:
+  ✔ update requirements
+
+Android:
+  Methods:
+    ☐ open matching file in editor?
+    ☐ detect deeplinks
