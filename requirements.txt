@@ -1,6 +1,6 @@
 ripgrepy
 asn1crypto
-cffi
+cffi==1.14.0
 cryptography==2.9
 idna
 javaobj-py3

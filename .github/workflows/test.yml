@@ -16,7 +16,7 @@ jobs:
           - ubuntu-latest
           - macos-latest
         python-version:
-          - "3.7"
+          # - "3.7"
           - "3.8"
 
     steps:
@@ -49,7 +49,6 @@ jobs:
       - name: Install ripgrep osx
         if: matrix.os == 'macOS-latest'
         run: |
-          brew update
           brwe install ripgrep
 
       - name: Install jadx
