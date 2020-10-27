@@ -1,7 +1,7 @@
 ripgrepy
 asn1crypto
 cffi==1.14.0
-cryptography==2.9
+cryptography==3.2
 idna
 javaobj-py3
 pyasn1-modules

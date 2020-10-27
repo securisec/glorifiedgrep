@@ -26,7 +26,7 @@ setup(
         "ripgrepy==1.0.0",
         "asn1crypto==0.24.0",
         "cffi==1.11.5",
-        "cryptography==2.3.1",
+        "cryptography==3.2",
         "idna==2.7",
         "javaobj-py3==0.2.4",
         "pyasn1-modules==0.2.2",
